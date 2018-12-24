@@ -1,3 +1,28 @@
+/*
+ * The MIT License
+ *
+ * Copyright 2018 BAP1.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
 /**
  * B. CMatrix class is a core class of Open Cezeri Library (OCL) and it is
  * implemented by Dr.Musa ATAŞ who is the instructor and principal coordinator
@@ -204,6 +229,7 @@ public final class CMatrix implements Serializable {
     /**
      * calling conventions of static factory method pattern
      *
+     * @param lst : take ArrayList as an argument
      * @return 1x1 CMatrix instance
      */
     public static CMatrix getInstance(ArrayList lst) {
@@ -215,6 +241,7 @@ public final class CMatrix implements Serializable {
     /**
      * calling conventions of static factory method pattern
      *
+     * @param lst take List as an argument
      * @return 1x1 CMatrix instance
      */
     public static CMatrix getInstance(List lst) {
@@ -226,6 +253,7 @@ public final class CMatrix implements Serializable {
     /**
      * calling conventions of static factory method pattern
      *
+     * @param c take CMatrix as an argument
      * @return 1x1 CMatrix instance
      */
     public static CMatrix getInstance(CMatrix c) {
@@ -249,7 +277,7 @@ public final class CMatrix implements Serializable {
     /**
      * try to locate n previous matrix if it exists
      *
-     * @param n
+     * @param n integer number
      * @return previous Matrix
      */
     public CMatrix prev(int n) {
@@ -262,7 +290,6 @@ public final class CMatrix implements Serializable {
     /**
      * try to locate first cezeri matrix
      *
-     * @param n
      * @return previous Matrix
      */
     public CMatrix prevFirst() {
@@ -288,6 +315,7 @@ public final class CMatrix implements Serializable {
     /**
      * try to locate n next matrix if it exists
      *
+     * @param n integer number
      * @return next Matrix
      */
     public CMatrix next(int n) {
@@ -300,7 +328,6 @@ public final class CMatrix implements Serializable {
     /**
      * try to locate last cezeri matrix
      *
-     * @param n
      * @return previous Matrix
      */
     public CMatrix nextLast() {
@@ -313,7 +340,7 @@ public final class CMatrix implements Serializable {
     /**
      * generate nxn zero matrix
      *
-     * @param n
+     * @param n integer number
      * @return CMatrix
      */
     public static CMatrix getInstance(int n) {
@@ -453,8 +480,8 @@ public final class CMatrix implements Serializable {
     /**
      * generate a matrix from open cv mat object
      *
-     * @param d: double array of int
-     * @return CMatrix double type
+     * @param m Mat argument
+     * @return CMatrix
      */
     public static CMatrix getInstance(Mat m) {
         double[][] d = FactoryImageProcess.imageToPixels2DFromOpenCV(m);
@@ -465,7 +492,7 @@ public final class CMatrix implements Serializable {
      * generate a matrix from the text file choosen, assuming item separator is
      * ;
      *
-     * @return CMatrix double type
+     * @return CMatrix
      */
     public static CMatrix getInstanceFromFile() {
         double[][] d = FactoryUtils.readFromFile();
@@ -476,6 +503,7 @@ public final class CMatrix implements Serializable {
      * generate a matrix from the text file choosen, assuming item separator is
      * token
      *
+     * @param token String argument
      * @return CMatrix double type
      */
     public static CMatrix getInstanceFromFile(String token) {
@@ -487,13 +515,21 @@ public final class CMatrix implements Serializable {
      * generate a matrix from the text file chosen, assuming item separator is
      * token
      *
-     * @return CMatrix double type
+     * @param fileName String
+     * @param token String
+     * @return CMatrix
      */
     public static CMatrix getInstanceFromFile(String fileName, String token) {
         double[][] d = FactoryUtils.readFromFile(fileName, token);
         return new CMatrix(d);
     }
 
+    /**
+     * getInstancesFromARFF
+     * 
+     * @param m Instances
+     * @return CMatrix
+     */
     public static CMatrix getInstancesFromARFF(Instances m) {
         return fromInstances(m);
     }
@@ -502,7 +538,7 @@ public final class CMatrix implements Serializable {
      * generate a matrix from instances of Weka format
      *
      * @param m : Weka instances
-     * @return CMatrix double type
+     * @return CMatrix
      */
     public static CMatrix fromInstances(Instances m) {
         double[][] ret = new double[m.numInstances()][m.numAttributes()];
@@ -519,7 +555,7 @@ public final class CMatrix implements Serializable {
      * read Weka ARFF file format 2D data into CMatrix
      *
      * @param path : arff file path
-     * @return
+     * @return CMatrix
      */
     public static CMatrix getInstanceFromARFF(String path) {
         return fromARFF(path);
@@ -529,7 +565,7 @@ public final class CMatrix implements Serializable {
      * read Excel sheet and transform data into CMatrix double[][] format
      *
      * @param path:excel file path
-     * @return
+     * @return CMatrix
      */
     public static CMatrix getInstanceFromExcelCSV(String path) {
         return new CMatrix(FactoryUtils.readCSV(path, ',', 0));
@@ -539,7 +575,9 @@ public final class CMatrix implements Serializable {
      * read Excel sheet and transform data into CMatrix double[][] format
      *
      * @param path:excel file path
-     * @return
+     * @param seperator
+     * @param headerline
+     * @return CMatrix
      */
     public static CMatrix getInstanceFromExcelCSV(String path, char seperator, int headerline) {
         return new CMatrix(FactoryUtils.readCSV(path, seperator, headerline));
@@ -548,7 +586,7 @@ public final class CMatrix implements Serializable {
     /**
      * generate a matrix from arff file format of Weka
      *
-     * @param m : ARFF file path as String object
+     * @param path : ARFF file path as String object
      * @return CMatrix double type
      */
     public static CMatrix fromARFF(String path) {
@@ -565,7 +603,7 @@ public final class CMatrix implements Serializable {
     /**
      * generate a matrix by reading arff file format of Weka
      *
-     * @param m : ARFF file path as String object
+     * @param path : ARFF file path as String object
      * @return CMatrix double type
      */
     public CMatrix readARFF(String path) {
@@ -583,7 +621,7 @@ public final class CMatrix implements Serializable {
      * generate a matrix by reading csv file format and holds column names as
      * feature names and classLabels
      *
-     * @param m : csv file path
+     * @param path : csv file path
      * @return CMatrix double type
      */
     public CMatrix readCSV(String path) {
@@ -653,6 +691,7 @@ public final class CMatrix implements Serializable {
     /**
      * make a deep copy of the given matrix
      *
+     * @param cm
      * @return CMatrix
      */
     public CMatrix clone(CMatrix cm) {
@@ -884,6 +923,8 @@ public final class CMatrix implements Serializable {
      * current matrix structure is changed
      *
      * @param a : double[]
+     * @param r
+     * @param c
      * @return CMatrix
      */
     public CMatrix setArray(double[] a, int r, int c) {
@@ -944,7 +985,7 @@ public final class CMatrix implements Serializable {
      * set the array of current matrix note that clone is not calling anymore,
      * current matrix structure will be changed
      *
-     * @param a : double[]
+     * @param array : double[]
      * @return CMatrix
      */
     public CMatrix setArray(double[][] array) {
@@ -1157,6 +1198,13 @@ public final class CMatrix implements Serializable {
         return ret.transpose();
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @param nrows
+     * @return
+     */
     public CMatrix vector2D(int from, int to, int nrows) {
         CMatrix ret = this.clone(this);
 
@@ -1192,6 +1240,13 @@ public final class CMatrix implements Serializable {
         return ret;
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @param nrows
+     * @return
+     */
     public CMatrix imgradient(int from, int to, int nrows) {
         CMatrix ret = this.clone(this);
 
@@ -1199,6 +1254,14 @@ public final class CMatrix implements Serializable {
         return ret;
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @param nrows
+     * @param ncols
+     * @return
+     */
     public CMatrix imgradient(int from, int to, int nrows, int ncols) {
         CMatrix ret = this.clone(this);
 
@@ -1234,6 +1297,13 @@ public final class CMatrix implements Serializable {
         return ret.transpose();
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @param n
+     * @return
+     */
     public CMatrix linspace(int from, int to, int n) {
         CMatrix ret = this.clone(this);
 
@@ -1260,7 +1330,8 @@ public final class CMatrix implements Serializable {
     /**
      * generate a nr x nc-size matrix with a fixed value n
      *
-     * @param m
+     * @param nr
+     * @param nc
      * @param n
      * @return
      */
@@ -1271,6 +1342,12 @@ public final class CMatrix implements Serializable {
         return ret.clone(this);
     }
 
+    /**
+     *
+     * @param r
+     * @param c
+     * @return
+     */
     public CMatrix zeros(int r, int c) {
         CMatrix ret = new CMatrix(r, c);
 //        ret.fillMatrix(0);
@@ -1278,6 +1355,11 @@ public final class CMatrix implements Serializable {
         return ret.clone(this);
     }
 
+    /**
+     *
+     * @param n
+     * @return
+     */
     public CMatrix ones(int n) {
         CMatrix ret = new CMatrix(n);
         ret.fillMatrix(1);
@@ -1285,6 +1367,12 @@ public final class CMatrix implements Serializable {
         return ret.clone(this);
     }
 
+    /**
+     *
+     * @param r
+     * @param c
+     * @return
+     */
     public CMatrix ones(int r, int c) {
         CMatrix ret = new CMatrix(r, c);
         ret.fillMatrix(1);
@@ -1292,6 +1380,11 @@ public final class CMatrix implements Serializable {
         return ret.clone(this);
     }
 
+    /**
+     *
+     * @param n
+     * @return
+     */
     public CMatrix rand(int n) {
         CMatrix ret = new CMatrix(n);
         ret.setArray(FactoryMatrix.fillRandMatrix(ret.array, random));
@@ -1436,8 +1529,8 @@ public final class CMatrix implements Serializable {
      *
      * @param r
      * @param c
-     * @param min
-     * @param max
+     * @param mean
+     * @param var
      * @return
      */
     public CMatrix randnMeanVariance(int r, int c, double mean, double var) {
@@ -1466,6 +1559,8 @@ public final class CMatrix implements Serializable {
      * Plot scatter graph of two vector (double[] array) as an input parameter.
      *
      * Notification: two vectors should be the same size
+     * @param x
+     * @param y
      *
      * @return CMatrix
      */
@@ -1515,6 +1610,8 @@ public final class CMatrix implements Serializable {
 
     /**
      * plot the curves of each column in the matrix
+     * 
+     * @param frm
      *
      * @return CMatrix
      */
@@ -1649,7 +1746,6 @@ public final class CMatrix implements Serializable {
      *
      * show on single frame for each call only one frame is maintained
      *
-     * @param title:caption of the frame
      * @return
      */
     public CMatrix imshowRefresh() {
@@ -1660,7 +1756,6 @@ public final class CMatrix implements Serializable {
      *
      * show on single frame for each call only one frame is maintained
      *
-     * @param title:caption of the frame
      * @return
      */
     public CMatrix imRefresh() {
@@ -1708,6 +1803,7 @@ public final class CMatrix implements Serializable {
      * overloaded imshow method
      *
      * @param frm
+     * @param title
      * @return
      */
     public CMatrix imshow(FrameImage frm, String title) {
@@ -1744,11 +1840,11 @@ public final class CMatrix implements Serializable {
         return this;
     }
 
-    /**
-     * Detaylı ve gelişmiş resim gösteren figure açar
-     *
-     * @return
-     */
+//    /**
+//     * Detaylı ve gelişmiş resim gösteren figure açar
+//     *
+//     * @return
+//     */
 //    public CMatrix imshowAdvanced() {
 //        if (image == null || image.getType() == BufferedImage.TYPE_BYTE_GRAY) {
 //            image = ImageProcess.pixelsToBufferedImage255(array);
@@ -1757,12 +1853,12 @@ public final class CMatrix implements Serializable {
 //        frm.setVisible(true);
 //        return this;
 //    }
-    /**
-     * Detaylı ve gelişmiş resim gösteren figure açar
-     *
-     * @param title:caption of the figure
-     * @return
-     */
+//    /**
+//     * Detaylı ve gelişmiş resim gösteren figure açar
+//     *
+//     * @param title:caption of the figure
+//     * @return
+//     */
 //    public CMatrix imshowAdvanced(String title) {
 //        if (image == null || image.getType() == BufferedImage.TYPE_BYTE<_GRAY) {
 //            image = ImageProcess.pixelsToBufferedImage255(array);
@@ -1781,6 +1877,11 @@ public final class CMatrix implements Serializable {
 //        frm.setVisible(true);
 //        return this;
 //    }
+    
+    /**
+     *
+     * @return
+     */
     public CMatrix toGrayLevel() {
         CMatrix ret = this.clone(this);
 
@@ -1870,26 +1971,27 @@ public final class CMatrix implements Serializable {
     /**
      * Matlabdakine benzer şekilde temel resim gösteren figure açar
      *
+     * @param title
      * @return
      */
     public CMatrix showImage(String title) {
         return CMatrix.this.imshow(title);
     }
 
-    /**
-     * Detaylı ve gelişmiş resim gösteren figure açar
-     *
-     * @return
-     */
+//    /**
+//     * Detaylı ve gelişmiş resim gösteren figure açar
+//     *
+//     * @return
+//     */
 //    public CMatrix showImageAdvanced() {
 //        return imshowAdvanced();
 //    }
-    /**
-     * Detaylı ve gelişmiş resim gösteren figure açar
-     *
-     * @param title:caption of the figure
-     * @return
-     */
+//    /**
+//     * Detaylı ve gelişmiş resim gösteren figure açar
+//     *
+//     * @param title:caption of the figure
+//     * @return
+//     */
 //    public CMatrix showImageAdvanced(String title) {
 //        return imshowAdvanced(title);
 //    }
@@ -1974,6 +2076,7 @@ public final class CMatrix implements Serializable {
      * Matlab compatible code: calculate the histogram of the matrix for a
      * specified number of bins as column wised
      *
+     * @param nBins
      * @return histogram of each column
      */
     public CMatrix hist(int nBins) {
@@ -1994,6 +2097,8 @@ public final class CMatrix implements Serializable {
      * calculate the histogram of the matrix for a specified number of bins as
      * column wised
      *
+     * @param nbins
+     * @param title
      * @return histogram of each column
      */
     public CMatrix hist(int nBins, String title) {
@@ -2009,6 +2114,9 @@ public final class CMatrix implements Serializable {
      * calculate the histogram of the matrix for a specified number of bins as
      * column wised
      *
+     * @param nBins
+     * @param title
+     * @param isStatisticsVisible
      * @return histogram of each column
      */
     public CMatrix hist(int nBins, String title, boolean isStatisticsVisible) {
@@ -2020,12 +2128,20 @@ public final class CMatrix implements Serializable {
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public CMatrix getImageHistogramData() {
         CMatrix ret = this.clone(this);
 
         return FactoryImageProcess.getHistogram(ret);
     }
 
+    /**
+     *
+     * @return
+     */
     public CMatrix getHistogramData() {
         CMatrix ret = this.clone(this);
 
