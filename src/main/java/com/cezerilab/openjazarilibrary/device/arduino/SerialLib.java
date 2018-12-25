@@ -38,10 +38,20 @@ import java.util.Enumeration;
 public class SerialLib {
     private SerialPortEventListener obj=null;
     
+    /**
+     *
+     * @param obj:SerialPortEventListener
+     */
     public SerialLib(SerialPortEventListener obj){
         this.obj=obj;
     }
     
+    /**
+     *
+     * @param sp:SerialPort
+     * @param portName:String
+     * @return SerialType
+     */
     public SerialType serialInitialize(SerialPort sp, String portName) {
         BufferedReader input=null;
         OutputStream output=null;

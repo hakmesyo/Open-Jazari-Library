@@ -7,32 +7,7 @@ package com.cezerilab.openjazarilibrary.utils;
 
 import java.util.Arrays;
 
-/**Calculates the mel-based cepstra coefficients for one frame of speech.  
- * Based on the original MFCC implementation described in:  
- * [1] Davis & Mermelstein - IEEE Transactions on ASSP, August 1980.  
- * Additional references are:  
- * [2] Joseph Picone, Proceedings of the IEEE, Sep. 1993.  
- * [3] Jankowski et al. IEEE Trans. on Speech and Audio Processing. July, 1995.  
- * [4] Cardin et al, ICASSP'93 - pp. II-243  
- *  
- * Notice that there are several different implementations of the mel filter  
- * bank. For example, the log is usually implementated after having the filter  
- * outputs calculated, but could be implemented before filtering. Besides, there are  
- * differences in the specification of the filter frequencies. [1]  
- * suggested linear scale until 1000 Hz and logarithm scale afterwards.  
- * This implementation uses the equation (10) in [2]:  
- *      mel frequency = 2595 log(1 + (f/700)), where log is base 10  
- * to find the filter bank center frequencies.  
- *  
- * @author Aldebaro Klautau  
- * @version 2.0 - March 07, 2001  
- * @see MFCCPatternGenerator  
-*/   
-   
-// if m_oisZeroThCepstralCoefficientCalculated is true,   
-// this class decrements m_nnumberOfParameters by 1 and   
-// adds the 0-th coefficient to complete a vector with   
-// the number of MFCC's specified by the user.   
+
 public class TransformMFCC {   
    
        //parameter USEPOWER in HTK, where default is false   

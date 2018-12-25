@@ -35,10 +35,10 @@ public final class FactoryMatrix implements Serializable {
     /**
      * generates two dimensional Type array include default values
      *
-     * @param nRows
-     * @param nCols
-     * @param obj
-     * @return
+     * @param nRows:i
+     * @param nCols:i
+     * @param obj:i
+     * @return q
      */
     public static Object[][] matrixObjectDefault(int nRows, int nCols, Object obj) {
         Object[][] ret = new Object[nRows][nCols];
@@ -53,9 +53,9 @@ public final class FactoryMatrix implements Serializable {
     /**
      * generates two dimensional double array
      *
-     * @param nRows
-     * @param nCols
-     * @return
+     * @param nRows:i
+     * @param nCols:i
+     * @return q
      */
     public static double[][] matrixDoubleZeros(int nRows, int nCols) {
         return new double[nRows][nCols];
@@ -110,9 +110,9 @@ public final class FactoryMatrix implements Serializable {
     /**
      * generates two dimensional float array
      *
-     * @param nRows
-     * @param nCols
-     * @return
+     * @param nRows:i
+     * @param nCols:i
+     * @return q
      */
     public static float[][] matrixFloatZeros(int nRows, int nCols) {
         return new float[nRows][nCols];
@@ -167,9 +167,9 @@ public final class FactoryMatrix implements Serializable {
     /**
      * generates two dimensional int array
      *
-     * @param nRows
-     * @param nCols
-     * @return
+     * @param nRows:i
+     * @param nCols:i
+     * @return q
      */
     public static int[][] matrixIntZeros(int nRows, int nCols) {
         return new int[nRows][nCols];
@@ -224,9 +224,9 @@ public final class FactoryMatrix implements Serializable {
     /**
      * generates two dimensional byte array
      *
-     * @param nRows
-     * @param nCols
-     * @return
+     * @param nRows:i
+     * @param nCols:i
+     * @return q
      */
     public static byte[][] matrixByteZeros(int nRows, int nCols) {
         return new byte[nRows][nCols];
@@ -281,9 +281,9 @@ public final class FactoryMatrix implements Serializable {
     /**
      * generates two dimensional long array
      *
-     * @param nRows
-     * @param nCols
-     * @return
+     * @param nRows:i
+     * @param nCols:i
+     * @return q
      */
     public static long[][] matrixLongZeros(int nRows, int nCols) {
         return new long[nRows][nCols];
@@ -338,9 +338,9 @@ public final class FactoryMatrix implements Serializable {
     /**
      * generates two dimensional short array
      *
-     * @param nRows
-     * @param nCols
-     * @return
+     * @param nRows:i
+     * @param nCols:i
+     * @return q
      */
     public static short[][] matrixShortZeros(int nRows, int nCols) {
         return new short[nRows][nCols];
@@ -395,9 +395,9 @@ public final class FactoryMatrix implements Serializable {
     /**
      * generates two dimensional boolean array
      *
-     * @param nRows
-     * @param nCols
-     * @return
+     * @param nRows:i
+     * @param nCols:i
+     * @return q
      */
     public static boolean[][] matrixBooleanFalse(int nRows, int nCols) {
         return new boolean[nRows][nCols];
@@ -448,9 +448,9 @@ public final class FactoryMatrix implements Serializable {
     /**
      * generates two dimensional char array
      *
-     * @param nRows
-     * @param nCols
-     * @return
+     * @param nRows:i
+     * @param nCols:i
+     * @return q
      */
     public static char[][] matrixCharEmpty(int nRows, int nCols) {
         return new char[nRows][nCols];
@@ -495,9 +495,9 @@ public final class FactoryMatrix implements Serializable {
     /**
      * generates two dimensional String array
      *
-     * @param nRows
-     * @param nCols
-     * @return
+     * @param nRows:i
+     * @param nCols:i
+     * @return q
      */
     public static String[][] matrixStringEmpty(int nRows, int nCols) {
         return new String[nRows][nCols];
@@ -543,6 +543,8 @@ public final class FactoryMatrix implements Serializable {
      * ************************************************************************
      * Clone Operation : using fastest method of System.arraycopy()
      * ************************************************************************
+     * @param input:i
+     * @return q
      */
     public static int[][] clone(int[][] input) {
         if (input == null) {
@@ -821,6 +823,8 @@ public final class FactoryMatrix implements Serializable {
      * ************************************************************************
      * Matrix Transpose Methods : faster approach is used here
      * ************************************************************************
+     * @param d:i
+     * @return q
      */
     public static double[][] transposeSlower(double[][] d) {
         int r = d.length;
@@ -837,8 +841,8 @@ public final class FactoryMatrix implements Serializable {
     /**
      * Efficient and fast matrix transpose in terms of memory and computation
      *
-     * @param d
-     * @return
+     * @param d:i
+     * @return q
      */
     public static double[][] transposeSquare(double[][] d) {
         double temp;
@@ -1128,6 +1132,8 @@ public final class FactoryMatrix implements Serializable {
      * *************************************************************************
      * Populate Array with Random number
      * *************************************************************************
+     * @param p:i
+     * @return q
      */
     public static double[][] matrixDoubleRandom(int p) {
         return matrixDoubleValue(p, Math.random());
@@ -1263,8 +1269,9 @@ public final class FactoryMatrix implements Serializable {
      * as train sets. Hence, it holds 2D CMatrix array from which, first
      * dimensions train and second one is test
      *
-     * @param nFolds
-     * @return
+     * @param d:i
+     * @param nFolds:i
+     * @return q
      */
     public static double[][][][] crossValidationSets(double[][] d, int nFolds) {
 //        double[][] d=clone(input);
@@ -1306,10 +1313,10 @@ public final class FactoryMatrix implements Serializable {
      * that interpret(d,"5:end","0:3") means get subset based on the specified
      * criteria
      *
-     * @param d
-     * @param p1
-     * @param p2
-     * @return
+     * @param d:i
+     * @param p1:i
+     * @param p2:i
+     * @return q
      */
     public static double[][] interpret(double[][] d, String p1, String p2) {
         p1 = p1.replace("[", "").replace("]", "").replace("(", "").replace(")", "");
@@ -1359,8 +1366,9 @@ public final class FactoryMatrix implements Serializable {
      *
      * dynamic parameter
      *
-     * @param p
-     * @return
+     * @param input:i
+     * @param p:i
+     * @return q
      */
     public static double[][] subset(double[][] input, int[]... p) {
         double[][] d;
@@ -1488,6 +1496,7 @@ public final class FactoryMatrix implements Serializable {
      * Sutun bazlı toplama işlemi yapar mxn matrisinin tüm elemanlarını toplamak
      * istiyorsanız sumTotal veya iki defa sum çağırınız
      *
+     * @param d:i
      * @return CMatrix
      */
     public static double[] sum(double[][] d) {
@@ -1538,6 +1547,7 @@ public final class FactoryMatrix implements Serializable {
     /**
      * get the column wise product of the content in the array
      *
+     * @param d:i
      * @return double
      */
     public static double prod(double[] d) {
@@ -1603,7 +1613,7 @@ public final class FactoryMatrix implements Serializable {
     /**
      * column based variance calculation (N-1) based
      *
-     * @param array
+     * @param array:i
      * @return 2D double array
      */
     public static double[] var(double[][] array) {
@@ -1620,7 +1630,7 @@ public final class FactoryMatrix implements Serializable {
     /**
      * column based standard deviation calculation (N-1) based
      *
-     * @param array
+     * @param array:i
      * @return 2D double array
      */
     public static double[] std(double[][] array) {
@@ -1637,7 +1647,7 @@ public final class FactoryMatrix implements Serializable {
     /**
      * column based mean calculation based
      *
-     * @param array
+     * @param array:i
      * @return 2D double array
      */
     public static double[] mean(double[][] array) {
@@ -1654,7 +1664,7 @@ public final class FactoryMatrix implements Serializable {
     /**
      * column based covariance calculation based
      *
-     * @param array
+     * @param array:i
      * @return 2D double array
      */
     public static double[][] cov(double[][] array) {
@@ -1687,8 +1697,8 @@ public final class FactoryMatrix implements Serializable {
     /**
      * Calculates pseudo inverse of the given matrix (2D double array)
      *
-     * @param array
-     * @return
+     * @param array:i
+     * @return q
      */
     public static double[][] pinv(double[][] array) {
         Matrix a = new Matrix(array);
@@ -1781,7 +1791,7 @@ public final class FactoryMatrix implements Serializable {
      * @param nr: padding number of rows (padding width as vertical)
      * @param nc: padding number of columns (padding width as horizontal)
      * @param val : padding value
-     * @return
+     * @return q
      */
     public static double[][] padarray(double[][] d, int nr, int nc, double val) {
         int r = d.length + 2 * nr;
@@ -1803,8 +1813,8 @@ public final class FactoryMatrix implements Serializable {
      * @param nr: padding number of rows (padding width as vertical)
      * @param nc: padding number of columns (padding width as horizontal)
      * @param val : padding value
-     * @return
-     */
+     * @return q
+     */ 
     public static float[][] padarray(float[][] d, int nr, int nc, float val) {
         int r = d.length + 2 * nr;
         int c = d[0].length + 2 * nc;
@@ -1825,7 +1835,7 @@ public final class FactoryMatrix implements Serializable {
      * @param nr: padding number of rows (padding width as vertical)
      * @param nc: padding number of columns (padding width as horizontal)
      * @param val : padding value
-     * @return
+     * @return q
      */
     public static int[][] padarray(int[][] d, int nr, int nc, int val) {
         int r = d.length + 2 * nr;
@@ -1847,7 +1857,7 @@ public final class FactoryMatrix implements Serializable {
      * @param nr: padding number of rows (padding width as vertical)
      * @param nc: padding number of columns (padding width as horizontal)
      * @param val : padding value
-     * @return
+     * @return q
      */
     public static long[][] padarray(long[][] d, int nr, int nc, long val) {
         int r = d.length + 2 * nr;
@@ -1869,7 +1879,7 @@ public final class FactoryMatrix implements Serializable {
      * @param nr: padding number of rows (padding width as vertical)
      * @param nc: padding number of columns (padding width as horizontal)
      * @param val : padding value
-     * @return
+     * @return q
      */
     public static short[][] padarray(short[][] d, int nr, int nc, short val) {
         int r = d.length + 2 * nr;
@@ -1891,7 +1901,7 @@ public final class FactoryMatrix implements Serializable {
      * @param nr: padding number of rows (padding width as vertical)
      * @param nc: padding number of columns (padding width as horizontal)
      * @param val : padding value
-     * @return
+     * @return q
      */
     public static byte[][] padarray(byte[][] d, int nr, int nc, byte val) {
         int r = d.length + 2 * nr;
@@ -1913,7 +1923,7 @@ public final class FactoryMatrix implements Serializable {
      * @param nr: padding number of rows (padding width as vertical)
      * @param nc: padding number of columns (padding width as horizontal)
      * @param val : padding value
-     * @return
+     * @return q
      */
     public static String[][] padarray(String[][] d, int nr, int nc, String val) {
         int r = d.length + 2 * nr;
@@ -2102,7 +2112,7 @@ public final class FactoryMatrix implements Serializable {
     /**
      * Get Wavelet Transform Type based on the user input
      *
-     * @param type
+     * @param type:i
      * @return default is "haar"
      */
     public static Transform getTransform(String type) {
@@ -2373,9 +2383,9 @@ public final class FactoryMatrix implements Serializable {
     /**
      * Concatenates two double vectors horizontally [A,B]
      *
-     * @param c1
-     * @param c2
-     * @return
+     * @param c1:i
+     * @param c2:i
+     * @return q
      */
     public static double[][] catHorizontalMatrix(double[] c1, double[] c2) {
         if (c1.length != c2.length) {
@@ -2394,9 +2404,9 @@ public final class FactoryMatrix implements Serializable {
      * Concatenates two double vectors vertically [A;B] which produce single
      * column matrix
      *
-     * @param c1
-     * @param c2
-     * @return
+     * @param c1:i
+     * @param c2:i
+     * @return q
      */
     public static double[][] catVerticalMatrix(double[] c1, double[] c2) {
         int n = c1.length + c2.length;

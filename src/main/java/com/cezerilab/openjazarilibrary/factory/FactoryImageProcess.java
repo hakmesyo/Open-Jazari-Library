@@ -79,12 +79,7 @@ public final class FactoryImageProcess {
     /**
      * Canny Edge Detector
      *
-     * @param double[][] : inputImage
-     * @param lowThreshold: default value is 0.3f
-     * @param highTreshold:default value is 1.0f
-     * @param gaussianKernelRadious:default value is 2.5f
-     * @param guassianKernelWidth:default value is 3
-     * @param isContrastNormalized : default false
+     * @param d:double[][]
      * @return BufferedImage
      */
     public static double[][] edgeDetectionCanny(double[][] d) {
@@ -180,9 +175,9 @@ public final class FactoryImageProcess {
     /**
      * Musa Edge Detector
      *
-     * @param double[][] d: inputImage
+     * @param d:double[][]
      * @param thr: threshold double value
-     * @return
+     * @return double[][]
      */
     public static double[][] edgeDetectionMusa(double[][] d, int thr) {
 //        double thr=30;
@@ -206,7 +201,7 @@ public final class FactoryImageProcess {
     /**
      * Canny Edge Detector
      *
-     * @param double[][] : inputImage
+     * @param d: double[][] : inputImage
      * @param lowThreshold: default value is 0.3f
      * @param highTreshold:default value is 1.0f
      * @param gaussianKernelRadious:default value is 2.5f
@@ -495,8 +490,8 @@ public final class FactoryImageProcess {
     /**
      * return Alpha, Red, Green and Blue values of original RGB image
      *
-     * @param image
-     * @return
+     * @param image:BufferedImage
+     * @return int[][]
      */
     public static int[][][] imageToPixelsColorInt(BufferedImage image) {
         int numRows = image.getHeight();
@@ -521,8 +516,8 @@ public final class FactoryImageProcess {
     /**
      * return Alpha, Red, Green and Blue values of original RGB image
      *
-     * @param image
-     * @return
+     * @param image:BufferedImage
+     * @return double[][]
      */
     public static double[][][] imageToPixelsColorDouble(BufferedImage image) {
         int numRows = image.getHeight();
@@ -596,8 +591,8 @@ public final class FactoryImageProcess {
     /**
      * return Alpha, Red, Green and Blue values of original RGB image
      *
-     * @param image
-     * @return
+     * @param image:BufferedImage
+     * @return double[][]
      */
     public static double[][][] imageToPixelsColorDoubleFaster(BufferedImage image) {
         // Java's peculiar way of extracting pixels is to give them
@@ -1198,8 +1193,8 @@ public final class FactoryImageProcess {
     /**
      * 8 bit gray level histogram
      *
-     * @param d
-     * @return
+     * @param d:int
+     * @return int[]
      */
     public static int[] getHistogram(int[] d) {
         int[] ret = new int[256];
@@ -1213,12 +1208,6 @@ public final class FactoryImageProcess {
         return ret;
     }
 
-    /**
-     * N bins of histogram
-     *
-     * @param d
-     * @return
-     */
     public static int[] getHistogram(int[] d, int N) {
         int[] ret = new int[N];
         for (int i = 0; i < N; i++) {
@@ -1317,7 +1306,7 @@ public final class FactoryImageProcess {
      * resize the image to desired width and height value by using
      * Image.SCALE_SMOOTH format
      *
-     * @param img:BufferedImage
+     * @param src:BufferedImage
      * @param w:width
      * @param h:height
      * @return
@@ -1354,7 +1343,7 @@ public final class FactoryImageProcess {
     /**
      * Resizes an image using a Graphics2D object backed by a BufferedImage.
      *
-     * @param srcImg - source image to scale
+     * @param src - source image to scale
      * @param w - desired width
      * @param h - desired height
      * @return - the new resized image
@@ -1460,11 +1449,6 @@ public final class FactoryImageProcess {
         return mean;
     }
 
-    /**
-     * 16.04.2014 Musa Ataş Bir imgenin çerisinde küçük bir imgeyi correlation
-     * coefficient tabanlı arar, en iyi correlation coefficient değerine sahip
-     * koordinatı geri gönderir.
-     */
     public static Point getPositionOfSubImageFromParentImage(int[][] parentImg, int[][] subImg, String filterType) {
         Point ret = new Point();
         ArrayList<TGrayPixel> cr = null;
@@ -1846,8 +1830,8 @@ public final class FactoryImageProcess {
     /**
      * yanlış hesaplıyor güncellenmesi gerekir
      *
-     * @param d
-     * @return
+     * @param d:double[][]
+     * @return double
      */
     public static double getHomogeneity(double[][] d) {
         //aşağıdaki kod yanlış update edilmesi gerekiyor
@@ -2646,17 +2630,11 @@ public final class FactoryImageProcess {
         return ret_img;
     }
 
-    /**
-     * Get binary int treshold using Otsu's method
-     */
     public static int getOtsuTresholdValue(BufferedImage original) {
         double[][] d = FactoryImageProcess.imageToPixelsDouble(original);
         return getOtsuTresholdValue(d);
     }
 
-    /**
-     * Get binary int treshold using Otsu's method
-     */
     public static int getOtsuTresholdValue(double[][] d) {
         int[] histogram = FactoryImageProcess.getHistogram(d);
         int total = d.length * d[0].length;
@@ -2701,8 +2679,9 @@ public final class FactoryImageProcess {
     /**
      * Binarize Color Image with a given threshold value i.e. otsuThreshold
      *
-     * @param original
-     * @return
+     * @param original:i
+     * @param threshold:i
+     * @return i
      */
     public static BufferedImage binarizeColorImage(BufferedImage original, int threshold) {
         int red;
@@ -2731,8 +2710,8 @@ public final class FactoryImageProcess {
     /**
      * Binarize Color Image with a given threshold value i.e. otsuThreshold
      *
-     * @param original
-     * @return
+     * @param original:i
+     * @return i
      */
     public static BufferedImage binarizeColorImage(BufferedImage original) {
         int threshold = getOtsuTresholdValue(original);
@@ -2743,8 +2722,9 @@ public final class FactoryImageProcess {
      * Binarize Image with a given threshold value hint: you can determine
      * threshold value from otsu approach and then pass as an argument
      *
-     * @param original
-     * @return
+     * @param original:i
+     * @param threshold:i
+     * @return i
      */
     public static BufferedImage binarizeGrayScaleImage(BufferedImage original, int threshold) {
         int[][] d = imageToPixelsInt(original);
@@ -2765,8 +2745,8 @@ public final class FactoryImageProcess {
      * Binarize Image with a given threshold value you can determine threshold
      * value from otsu approach and then pass as an argument
      *
-     * @param original
-     * @return
+     * @param original:i
+     * @return i
      */
     public static BufferedImage binarizeGrayScaleImage(BufferedImage original) {
         int threshold = getOtsuTresholdValue(original);
@@ -2777,8 +2757,9 @@ public final class FactoryImageProcess {
      * Binarize Image with a given threshold value you can determine threshold
      * value from otsu approach
      *
-     * @param original
-     * @return
+     * @param d:i
+     * @param threshold:i
+     * @return i
      */
     public static BufferedImage binarizeGrayScaleImage(double[][] d, int threshold) {
         for (int i = 0; i < d.length; i++) {
@@ -2824,9 +2805,9 @@ public final class FactoryImageProcess {
     /**
      * convert let say gray scale image to RGB or any other types
      *
-     * @param img
-     * @param newType
-     * @return
+     * @param img:i
+     * @param newType:i
+     * @return i
      */
     public static BufferedImage toBufferedImage(BufferedImage img, int newType) {
         BufferedImage ret = new BufferedImage(img.getWidth(), img.getHeight(), newType);
@@ -3243,9 +3224,9 @@ public final class FactoryImageProcess {
      * if location and size are not given overlayed image is positioned at 0,0
      * white pixels are ignored through overlaying process
      *
-     * @param bf
-     * @param overlay
-     * @return
+     * @param bf:i
+     * @param overlay:i
+     * @return i
      */
     public static BufferedImage overlayImage(BufferedImage bf, BufferedImage overlay) {
         int[][][] bfp = imageToPixelsColorInt(bf);
@@ -3267,11 +3248,11 @@ public final class FactoryImageProcess {
     /**
      * overlay image onto original image
      *
-     * @param bf
-     * @param overlay
-     * @param rect
-     * @param bkg
-     * @return
+     * @param bf:i
+     * @param overlay:i
+     * @param rect:i
+     * @param bkg:i
+     * @return :i
      */
     public static BufferedImage overlayImage(BufferedImage bf, BufferedImage overlay, CRectangle rect, int bkg) {
         int[][][] bfp = imageToPixelsColorInt(bf);

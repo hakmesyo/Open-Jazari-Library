@@ -35,12 +35,6 @@ public class FrameImage extends javax.swing.JFrame {
 //        getPicturePanel().setFrame(this);
     }
 
-    /**
-     * Draws A Picture Frame
-     *
-     * @param img : image to be drawn
-     * @param name : Caption of the frame
-     */
     public FrameImage(BufferedImage img, String title) {
         super(title);
         initComponents();

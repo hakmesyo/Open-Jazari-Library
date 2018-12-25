@@ -14,7 +14,6 @@ public class NNRegressionExample {
 
     /**
      * Performs regression on a dataset of car prices for cars with different features.
-     * <br></br>
      * Uses file /example_data/Car_Prices.csv
      */
     public static void runCarPricesRegression() throws Exception {

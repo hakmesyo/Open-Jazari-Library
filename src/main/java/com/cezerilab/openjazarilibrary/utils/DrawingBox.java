@@ -115,9 +115,9 @@ public class DrawingBox extends ClosableFrame {
      * This translation remains in effect for any downstream mouse
      * listeners.
      *
-     * @see     java.awt.event.MouseAdapter
-     * @see     java.awt.event.MouseEvent#translatePoint(int int)
-     * @see     java.awt.Container#getInsets()
+     * see     java.awt.event.MouseAdapter
+     * see     java.awt.event.MouseEvent#translatePoint(int int)
+     * see     java.awt.Container#getInsets()
      */
     public class DBMouseAdapter extends MouseAdapter {
       public void mouseClicked(MouseEvent e) {
@@ -147,9 +147,9 @@ public class DrawingBox extends ClosableFrame {
      * translated coordinate system of the <code>DrawingBox</code>.  This 
      * translation remains in effect for any downstream mouse motion listeners.
      *
-     * @see   java.awt.event.MouseMotionAdapter
-     * @see   java.awt.event.MouseEvent#translatePoint(int int)
-     * @see   java.awt.Container#getInsets()
+     * see   java.awt.event.MouseMotionAdapter
+     * see   java.awt.event.MouseEvent#translatePoint(int int)
+     * see   java.awt.Container#getInsets()
      */
     public class DBMouseMotionAdapter extends MouseMotionAdapter {
       public void mouseDragged(MouseEvent e) {
@@ -323,7 +323,7 @@ public class DrawingBox extends ClosableFrame {
    *                      circle to be drawn.
    * @param   radius  the radius of the circle to be drawn.
    *
-   * @see     CSLib#drawCircle(int, int, int)
+   * see     CSLib#drawCircle(int, int, int)
    */
   public void drawCircle (Point p, int radius) {
     drawCircle (p.x, p.y, radius);
@@ -354,7 +354,7 @@ public class DrawingBox extends ClosableFrame {
    *                      circle to be filled.
    * @param   radius  the radius of the circle to be filled.
    *
-   * @see     CSLib#fillCircle(int, int, int)
+   * see     CSLib#fillCircle(int, int, int)
    */
   public void fillCircle (Point p, int radius) {
     fillCircle(p.x, p.y, radius);
@@ -381,14 +381,14 @@ public class DrawingBox extends ClosableFrame {
    * Fills an oval bounded by the specified rectangle with this
    * drawing box's current color.
    *
-   * @param   x       the <i>x</i> coordinate of the upper left corner 
+   * @param   x1       the <i>x</i> coordinate of the upper left corner 
    *                      of the oval to be filled.
-   * @param   y       the <i>y</i> coordinate of the upper left corner 
+   * @param   y1       the <i>y</i> coordinate of the upper left corner 
    *                      of the oval to be filled.
    * @param   width   the width of the oval to be filled.
    * @param   height  the height of the oval to be filled.
    *
-   * @see     java.awt.Graphics#fillOval
+   * see     java.awt.Graphics#fillOval
    */
   public void fillOval (int x1, int y1, int width, int height) {
     gContext.fillOval (x1, y1, width, height);
@@ -401,14 +401,14 @@ public class DrawingBox extends ClosableFrame {
    * specified by the <code>x</code>, <code>y</code>, 
    * <code>width</code>, and <code>height</code> arguments. 
    *
-   * @param   x       the <i>x</i> coordinate of the upper left 
+   * @param   x1       the <i>x</i> coordinate of the upper left 
    *                      corner of the oval to be drawn.
-   * @param   y       the <i>y</i> coordinate of the upper left 
+   * @param   y1       the <i>y</i> coordinate of the upper left 
    *                      corner of the oval to be drawn.
    * @param   width   the width of the oval to be drawn.
    * @param   height  the height of the oval to be drawn.
    *
-   * @see     java.awt.Graphics#drawOval
+   * see     java.awt.Graphics#drawOval
    */
   public void drawOval (int x1, int y1, int width, int height) {
     gContext.drawOval (x1, y1, width, height);

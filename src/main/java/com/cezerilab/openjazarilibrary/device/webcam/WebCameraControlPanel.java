@@ -54,6 +54,8 @@ public class WebCameraControlPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CameraControlPanel
+     * @param pp:int
+     * @param calledFrame:int
      */
     public WebCameraControlPanel(WebCameraPanel pp, WebCameraInterface calledFrame) {
         this.camInt = calledFrame;

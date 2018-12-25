@@ -464,7 +464,7 @@ public final class FactoryUtils {
      * given f_1..f_n format
      *
      * @param file_path : path with desired file_name
-     * @param d : data matrix
+     * @param lines:i
      * @param learning_type : TLearningType.REGRESSION or
      * TLearningType.CLASSIFICATION
      */
@@ -1366,9 +1366,9 @@ public final class FactoryUtils {
      * decrypt encrypted value with salt value by means of xor knowing that
      * double xor with salt yields original value
      *
-     * @param original
-     * @param salt
-     * @return
+     * @param encrypted:i
+     * @param salt:i
+     * @return q
      */
     public static int decrypt(int encrypted, int salt) {
         return encrypted ^ salt;
@@ -1972,9 +1972,9 @@ public final class FactoryUtils {
      * mantığı kullanılarak dizinin başına taşar. Negatif için de durum
      * böyledir.
      *
-     * @param prev
-     * @param set
-     * @return
+     * @param prevComb:i
+     * @param set:i
+     * @return q
      */
     public static String getNeighborSubset(String prevComb, String[] set) {
         int n = find(prevComb, set);
@@ -3227,8 +3227,9 @@ public final class FactoryUtils {
      * buna dik olan ikinci boyutun pixel olarak uzunluğunu hesaplar
      *
      * @param m=matrix
-     * @param t=threshold
-     * @return
+     * @param thr=threshold
+     * @param isShow:i
+     * @return q
      */
     public static double[] getObjectDimensions(double[][] m, int thr, boolean isShow) {
         int cRow = m.length / 2;
@@ -3303,8 +3304,9 @@ public final class FactoryUtils {
      * buna dik olan ikinci boyutun pixel olarak uzunluğunu hesaplar
      *
      * @param m=matrix
-     * @param t=threshold
-     * @return
+     * @param thr=threshold
+     * @param isShow:i
+     * @return q
      */
     public static double[] getObjectDimensionsV2(double[][] m, int thr, boolean isShow) {
         int cRow = m.length / 2;

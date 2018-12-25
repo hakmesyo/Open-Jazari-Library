@@ -56,7 +56,6 @@ public class C_ELM {
      *                      'hardlim' for Hardlim function
      *                      'tribas' for Triangular basis function
      *                      'radbas' for Radial basis function (for additive type of SLFNs instead of RBF type of SLFNs)
-     * @throws NotConvergedException
      */
 	
 	public C_ELM(int elm_type, int numberofHiddenNeurons, String ActivationFunction){

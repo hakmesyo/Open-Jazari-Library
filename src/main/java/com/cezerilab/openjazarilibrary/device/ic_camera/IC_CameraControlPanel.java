@@ -39,6 +39,7 @@ public class IC_CameraControlPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ICPanel
+     * @param calledFrame:IC_CameraInterface
      */
     public IC_CameraControlPanel(IC_CameraInterface calledFrame) {
         initComponents();
@@ -57,10 +58,19 @@ public class IC_CameraControlPanel extends javax.swing.JPanel {
 ////        startCamera();
 //    }
 
+    /**
+     *
+     * @param frm:IC_CameraInterface
+     */
+
     public void addListener(IC_CameraInterface frm) {
         listeners.add(frm);
     }
 
+    /**
+     *
+     * @param img:BufferedImage
+     */
     public void onNewImage(BufferedImage img) {
         // Notify everybody that may be interested.
         for (IC_CameraInterface cam : listeners) {
@@ -68,6 +78,9 @@ public class IC_CameraControlPanel extends javax.swing.JPanel {
         }        
     }
     
+    /**
+     *
+     */
     public void sendCameraStarted() {
         // Notify everybody that may be interested.
         for (IC_CameraInterface cam : listeners) {
@@ -75,6 +88,10 @@ public class IC_CameraControlPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     *
+     * @param index:int
+     */
     public void startCamera(int index) {
         int dn = searchAvailableCameras();
         if (dn > 0 && index < dn) {
@@ -83,26 +100,50 @@ public class IC_CameraControlPanel extends javax.swing.JPanel {
         }
     }
     
+    /**
+     *
+     * @return int
+     */
     public int getActiveCameraIndex(){
         return combo_cams.getSelectedIndex();
     }
     
+    /**
+     *
+     * @return string
+     */
     public String getActiveCameraName(){
         return combo_cams.getSelectedItem().toString();
     }
     
+    /**
+     *
+     * @return int
+     */
     public int getActiveColorFormatIndex(){
         return combo_format.getSelectedIndex();
     }
     
+    /**
+     *
+     * @param n:int
+     */
     public void setActiveColorFormatIndex(int n){
         combo_format.setSelectedIndex(n);
     }
     
+    /**
+     *
+     * @return String
+     */
     public String getActiveColorFormatName(){
         return combo_format.getSelectedItem().toString();
     }
 
+    /**
+     *
+     * @param id:String
+     */
     public void startCamera(String id) {
         int dn = searchAvailableCameras();
         if (dn > 0 && ((DefaultComboBoxModel) combo_cams.getModel()).getIndexOf("id") != -1) {
@@ -270,6 +311,9 @@ public class IC_CameraControlPanel extends javax.swing.JPanel {
 
     String id = UUID.randomUUID().toString();
 
+    /**
+     *
+     */
     public void startLiveVideo() {
         camDll.IC_StopLive(ic_grabber);
         int isLive = camDll.IC_StartLive(ic_grabber, 0);
@@ -284,6 +328,10 @@ public class IC_CameraControlPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     *
+     * @return BufferedImage
+     */
     public BufferedImage getBufferedImage() {
         return img;
     }
@@ -295,6 +343,10 @@ public class IC_CameraControlPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     *
+     * @return int
+     */
     public int getColorFormat() {
         return combo_format.getSelectedIndex();
     }

@@ -68,133 +68,6 @@ import java.util.jar.Manifest;
 
 import javax.swing.JApplet;
 
-/**
- * This class loader loads classes, native libraries and resources from
- * the top JAR and from JARs inside top JAR. The loading process looks
- * through JARs hierarchy and allows their tree structure, i.e. nested JARs.
- * <p>
- * The top JAR and nested JARs are included in the classpath and searched
- * for the class or resource to load. The nested JARs could be located
- * in any directories or subdirectories in a parent JAR.
- * <p>
- * All directories or subdirectories in the top JAR and nested JARs are
- * included in the library path and searched for a native library.
- * For example, the library "Native.dll" could be in the JAR root directory
- * as "Native.dll" or in any directory as "lib/Native.dll"
- * or "abc/xyz/Native.dll".
- * <p>
- * This class delegates class loading to the parent class loader and
- * successfully loads classes, native libraries and resources when it works
- * not in a JAR environment.
- * <p>
- * Create a launcher class to start your class
- * <code>com.mycompany.MyApp main()</code> method to start your application
- * <code>
-<pre>
-public class MyAppLauncher {
-
-    public static void main(String[] args) {
-        JarClassLoader jcl = new JarClassLoader();
-        try {
-            jcl.invokeMain("com.mycompany.MyApp", args);
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
-    } // main()
-
-} // class MyAppLauncher
-</pre>
- * </code>
- * <p>
- * An application could be started in two different environments:
- * <br/>
- * 1. Application is started from an exploded JAR with dependent resources
- * locations defined in a classpath.
- * Command line to start the application could point to the main class e.g.
- * <code>MyApp.main()</code> or to the <code>MyAppLauncher.main()</code>
- * class (see example above). The application behavior in both cases
- * is identical. Application started with <code>MyApp.main()</code>
- * uses system class loader and resources loaded from a file system.
- * Application started with <code>MyAppLauncher.main()</code>
- * uses <code>JarClassLoader</code> which transparently passes class
- * loading to the system class loader.
- *
- * <br/>
- * 2. Application is started from a JAR with dependent JARs and other
- * resources inside the main JAR.
- * Application must be started with <code>MyAppLauncher.main()</code> and
- * <code>JarClassLoader</code> will load <code>MyApp.main()</code>
- * and required resources from the main JAR.
- *
- * <p>The launcher class for the Java applet is very similar to application
- * launcher.
- * <code>
-<pre>
-public class MyAppletLauncher extends JApplet {
-
-    private JarClassLoader jcl;
-    
-    @Override
-    public void init() {
-        jcl = new JarClassLoader();
-        try {
-            jcl.initApplet("com.mycompany.MyApplet", this);
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
-    }
-    
-    @Override
-    public void start() {
-        jcl.startApplet();
-    }
-    
-    @Override
-    public void stop() {
-        jcl.stopApplet();
-    }
-    
-    @Override
-    public void destroy() {
-        jcl.destroyApplet();
-    }
-    
-} // class MyAppletLauncher
-</pre>
- * </code>
- * The applet launcher class could have both <code>main()</code> and applet 
- * related methods for UI class which could be started as an application or
- * an applet. This technique is very convenient to develop an applet and test 
- * it as an application. 
- *
- * <p>
- * Use VM parameters in the command line for logging settings (examples):
- * <ul>
- * <li><code>-DJarClassLoader.logger=[filename]</code> for logging into the file.
- * The default is console.</li>
- * <li><code>-DJarClassLoader.logger.level=INFO</code> for logging level.
- * The default level is ERROR. See also {@link LogLevel}.</li>
- * <li><code>-DJarClassLoader.logger.area=CLASS,RESOURCE</code> for logging area.
- * The default area is ALL. See also {@link LogArea}. Multiple logging areas
- * could be specified with ',' delimiter.</li>
- * </ul>
- *
- * <p>
- * Known issues: some temporary files created by class loader are not deleted
- * on application exit because JVM does not close handles to them.
- * See details in {@link #shutdown()}.
- * <p>
- * See also discussion "How load library from jar file?"
- * http://discuss.develop.com/archives/wa.exe?A2=ind0302&L=advanced-java&D=0&P=4549
- * Unfortunately, the native method java.lang.ClassLoader$NativeLibrary.unload()
- * is package accessed in a package accessed inner class.
- * Moreover, it's called from finalizer. This does not allow releasing
- * the native library handle and delete the temporary library file.
- * Option to explore: use JNI function UnregisterNatives(). See also
- * native code in ...\jdk\src\share\native\java\lang\ClassLoader.class
- *
- * @version $Revision: 1.39 $
- */
 public class JarClassLoader extends ClassLoader {
 
     /** VM parameter key to turn on logging to file or console. */
@@ -203,7 +76,7 @@ public class JarClassLoader extends ClassLoader {
     /**
      * VM parameter key to define log level.
      * Valid levels are defined in {@link LogLevel}.
-     * Default value is {@link LogLevel#OFF}.
+     * 
      */
     public static final String KEY_LOGGER_LEVEL = "JarClassLoader.logger.level";
 
@@ -774,9 +647,9 @@ public class JarClassLoader extends ClassLoader {
      * <p>(3) Actual cause of InvocationTargetException
      *
      * See
-     * {@link http://java.sun.com/developer/Books/javaprogramming/JAR/api/jarclassloader.html}
+     * http://java.sun.com/developer/Books/javaprogramming/JAR/api/jarclassloader.html
      * and
-     * {@link http://java.sun.com/developer/Books/javaprogramming/JAR/api/example-1dot2/JarClassLoader.java}
+     * http://java.sun.com/developer/Books/javaprogramming/JAR/api/example-1dot2/JarClassLoader.java
      */
     public void invokeMain(String sClass, String[] args) throws Throwable {
         Class<?> clazz = loadClass(sClass);

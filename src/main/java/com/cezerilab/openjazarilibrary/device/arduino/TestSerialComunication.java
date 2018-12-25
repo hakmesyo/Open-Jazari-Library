@@ -23,6 +23,10 @@ public class TestSerialComunication implements SerialPortEventListener {
     private SerialLib slib = new SerialLib(this);
     private SerialType st = new SerialType();
 
+    /**
+     *
+     * @param args:String[]
+     */
     public static void main(String[] args) {
         TestSerialComunication obj = new TestSerialComunication();
         obj.start("COM5");
@@ -43,10 +47,18 @@ public class TestSerialComunication implements SerialPortEventListener {
         System.exit(0);
     }
 
+    /**
+     *
+     * @param comPort:String
+     */
     public void start(String comPort) {
         st = slib.serialInitialize(serialPort, comPort);
     }
 
+    /**
+     *
+     * @param oEvent:SerialPortEvent
+     */
     @Override
     public synchronized void serialEvent(SerialPortEvent oEvent) {
         if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
@@ -62,6 +74,10 @@ public class TestSerialComunication implements SerialPortEventListener {
         }
     }
 
+    /**
+     *
+     * @param s1:String
+     */
     public void sendDataToSerialPort(String s1) {
         String s = s1 + "\n";
         try {

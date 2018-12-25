@@ -8,7 +8,7 @@ public class FactoryNormalization {
 
     /**
      *
-     * @param vect
+     * @param p:i
      * @return It's a pretty simple concept. Suppose that a teacher wants to
      * rank her students on a scale of 1-10. She uses their average test score
      * percentages to rank them.

@@ -161,9 +161,6 @@ public class FrameHistogram extends javax.swing.JFrame {
         getHistogramPanel().setMatrix(cm);
     }
 
-    /**
-     * @param args the command line arguments
-     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_dataGrid;
     private javax.swing.JButton btn_save;

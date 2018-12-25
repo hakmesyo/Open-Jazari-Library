@@ -151,8 +151,8 @@ public class FactoryInstance {
     /**
      *
      * @param m tüm dataset
-     * @param val class value değeri val olanları filtrele
-     * @return
+     * @param cl:i
+     * @return q
      */
     public static Instances[] getSpecificInstancesBasedOnClassValue(Instances m, String[] cl) {
         Instances[] ret = new Instances[cl.length];

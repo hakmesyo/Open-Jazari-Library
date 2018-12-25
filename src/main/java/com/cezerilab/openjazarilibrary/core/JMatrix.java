@@ -100,7 +100,7 @@ public class JMatrix {
      * Called from clone methods inherently TODO: It might be side effect
      * therefore concise test should be performed.
      *
-     * @return
+     * @return JMatrix
      */
     private JMatrix takeSnapshot() {
         JMatrix jm = new JMatrix(FactoryMatrix.clone(array));
@@ -113,7 +113,7 @@ public class JMatrix {
      * well. You should specify key value as String.
      *
      * @param variable : it can be any name used as key value
-     * @return JM
+     * @return  JMatrix
      */
     public JMatrix clone(String variable) {
         if (isLoopStarted) {
@@ -131,7 +131,7 @@ public class JMatrix {
      * This command is used to make deep copy of the current JM object. Note
      * that, cloned object is stored in the instanceList
      *
-     * @return JM
+     * @return  JMatrix
      */
     @Override
     public JMatrix clone() {
@@ -155,37 +155,70 @@ public class JMatrix {
         return s;
     }
 
+    /**
+     *
+     * @param p JMatrix
+     * @return JMatrix
+     */
     public JMatrix println(JMatrix p) {
         System.out.println(p);
         return this;
     }
 
+    /**
+     *
+     * @param msg String
+     * @param p JMatrix
+     * @return JMatrix
+     */
     public JMatrix println(String msg, JMatrix p) {
         yaz(msg);
         System.out.println(p);
         return this;
     }
 
+    /**
+     *
+     * @return JMatrix
+     */
     public JMatrix println() {
         System.out.println(this);
         return this;
     }
 
+    /**
+     *
+     * @param obj:Object
+     * @return JMatrix
+     */
     public JMatrix printlnValue(Object obj) {
         System.out.println(obj);
         return this;
     }
 
+    /**
+     *
+     * @param msg:sString
+     * @return JMatrix
+     */
     public JMatrix println(String msg) {
         yaz(msg);
         System.out.println(this);
         return this;
     }
 
+    /**
+     *
+     * @param p:Object
+     */
     public void yaz(Object p) {
         System.out.print(p);
     }
 
+    /**
+     *
+     * @param p:Object
+     */
     public void yazln(Object p) {
         System.out.println(p);
     }
@@ -193,28 +226,56 @@ public class JMatrix {
 //****************************************************************************************
 //Region of set and get methods
 //****************************************************************************************
+
+    /**
+     *
+     * @return int
+     */
     public int getRowNumber() {
         return this.array.length;
     }
 
+    /**
+     *
+     * @return int
+     */
     public int getColumnNumber() {
         return this.array[0].length;
     }
 
+    /**
+     *
+     * @return float[][]
+     */
     public float[][] getArray() {
         return array;
     }
 
+    /**
+     *
+     * @param f:float[][]
+     * @return JMatrix
+     */
     public JMatrix setArray(float[][] f) {
         array = f;
         return this;
     }
 
+    /**
+     *
+     * @param jm JMatrix
+     * @return JMatrix
+     */
     public JMatrix setMatrix(JMatrix jm) {
         instance = jm;
         return this;
     }
 
+    /**
+     *
+     * @param b:boolean
+     * @return JMatrix
+     */
     public JMatrix setVisibleFeatureName(boolean b) {
         isFeatureListVisible = b;
         return this;
@@ -266,25 +327,46 @@ public class JMatrix {
 //****************************************************************************************************************************************************
 //Region of Static getInstance and Overloaded Methods
 //****************************************************************************************************************************************************
+
+    /**
+     *
+     * @return JMatrix
+     */
     public static JMatrix getInstance() {
         return new JMatrix();
     }
 
+    /**
+     *
+     * @return JMatrix
+     */
     public static JMatrix getCurrentInstance() {
         return instanceList.get(currentInstanceIndex);
     }
 
+    /**
+     *
+     * @return JMatrix
+     */
     public static JMatrix getInstanceLastCloned() {
         int n = instanceList.size() - 1;
         currentInstanceIndex = n;
         return instanceList.get(n);
     }
 
+    /**
+     *
+     * @return JMatrix
+     */
     public static JMatrix getInstanceFirstCloned() {
         currentInstanceIndex = 0;
         return instanceList.get(0);
     }
 
+    /**
+     *
+     * @return JMatrix
+     */
     public static JMatrix getInstancePreviousCloned() {
         if (currentInstanceIndex >= 1) {
             currentInstanceIndex--;
@@ -294,6 +376,10 @@ public class JMatrix {
         }
     }
 
+    /**
+     *
+     * @return JMatrix
+     */
     public static JMatrix getInstanceNextCloned() {
         int n = instanceList.size();
         if (currentInstanceIndex < n) {
@@ -304,6 +390,11 @@ public class JMatrix {
         }
     }
 
+    /**
+     *
+     * @param key:String
+     * @return JMatrix
+     */
     public static JMatrix getInstanceClonedWithKey(String key) {
         if (instanceMap.containsKey(key)) {
             return instanceMap.get(key);
@@ -312,22 +403,51 @@ public class JMatrix {
         }
     }
 
+    /**
+     *
+     * @param n:int
+     * @return JMatrix
+     */
     public static JMatrix getInstance(int n) {
         return new JMatrix(n);
     }
 
+    /**
+     *
+     * @param n:int
+     * @param value:float
+     * @return JMatrix
+     */
     public static JMatrix getInstance(int n, float value) {
         return new JMatrix(n, value);
     }
 
+    /**
+     *
+     * @param nr:int
+     * @param nc:int
+     * @return JMatrix
+     */
     public static JMatrix getInstance(int nr, int nc) {
         return new JMatrix(nr, nc);
     }
 
+    /**
+     *
+     * @param nr:int
+     * @param nc:int
+     * @param value.float
+     * @return JMatrix
+     */
     public static JMatrix getInstance(int nr, int nc, float value) {
         return new JMatrix(nr, nc, value);
     }
 
+    /**
+     *
+     * @param f:float[][]
+     * @return JMatrix
+     */
     public static JMatrix getInstance(float[][] f) {
         return new JMatrix(f);
     }
@@ -335,6 +455,11 @@ public class JMatrix {
 //****************************************************************************************************************************************************
 //Region of Matrix Operations Methods
 //****************************************************************************************************************************************************
+
+    /**
+     *
+     * @return JMatrix
+     */
     public JMatrix add() {
         if (isLoopStarted) {
             MethodSignature ms = new MethodSignature("add");
@@ -350,6 +475,11 @@ public class JMatrix {
         return this;
     }
 
+    /**
+     *
+     * @param n:float
+     * @return JMatrix
+     */
     public JMatrix add(float n) {
         if (isLoopStarted) {
             MethodSignature ms = new MethodSignature("add", n);
@@ -365,6 +495,11 @@ public class JMatrix {
         return this;
     }
 
+    /**
+     *
+     * @param jm: JMatrix
+     * @return JMatrix
+     */
     public JMatrix add(JMatrix jm) {
         if (!sizeCheck(this, jm)) {
             System.err.println("ERR_01:Matrix size mismatch. Add operation can not be executed!");
@@ -385,13 +520,13 @@ public class JMatrix {
     }
 
     private boolean sizeCheck(JMatrix jm1, JMatrix jm2) {
-        if (jm1.getRowNumber() == jm2.getRowNumber() && jm1.getColumnNumber() == jm2.getColumnNumber()) {
-            return true;
-        } else {
-            return false;
-        }
+        return jm1.getRowNumber() == jm2.getRowNumber() && jm1.getColumnNumber() == jm2.getColumnNumber();
     }
 
+    /**
+     *
+     * @return JMatrix
+     */
     public JMatrix dump() {
         if (isLoopStarted) {
             MethodSignature ms = new MethodSignature("dump");
@@ -405,6 +540,11 @@ public class JMatrix {
         return this;
     }
 
+    /**
+     *
+     * @param nr:int
+     * @return JMatrix
+     */
     public JMatrix head(int nr) {
         if (getRowNumber() < nr) {
             nr = getRowNumber();
@@ -424,10 +564,19 @@ public class JMatrix {
         return this;
     }
 
+    /**
+     *
+     * @return JMatrix
+     */
     public JMatrix head() {
         return head(5);
     }
 
+    /**
+     *
+     * @param n:int
+     * @return JMatrix
+     */
     public JMatrix loopStart(int n) {
         nLoop = n;
         methodList = new ArrayList();
@@ -435,6 +584,10 @@ public class JMatrix {
         return this;
     }
 
+    /**
+     *
+     * @return JMatrix
+     */
     public synchronized JMatrix loopEnd() {
         isLoopStarted = false;
         for (int i = 0; i < nLoop - 1; i++) {
@@ -456,20 +609,18 @@ public class JMatrix {
         try {
             Method m = JMatrix.class.getMethod(methodName, classes);
             ret = (JMatrix) m.invoke(obj, values);
-        } catch (NoSuchMethodException ex) {
-            Logger.getLogger(JMatrix.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SecurityException ex) {
-            Logger.getLogger(JMatrix.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(JMatrix.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(JMatrix.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             Logger.getLogger(JMatrix.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ret;
     }
 
+    /**
+     *
+     * @param sourceObject JMatrix
+     * @param ms JMatrix
+     * @return JMatrix
+     */
     public JMatrix invokeDynamicMethod(Object sourceObject, MethodSignature ms) {
         clone();
         JMatrix ret = null;
@@ -491,6 +642,12 @@ public class JMatrix {
         return ret;
     }
 
+    /**
+     *
+     * @param sourceObject JMatrix
+     * @param ms JMatrix
+     * @return JMatrix
+     */
     public JMatrix invokeDynamicMethod(Class sourceObject, MethodSignature ms) {
         clone();
         JMatrix ret = null;
@@ -515,6 +672,16 @@ public class JMatrix {
 //****************************************************************************************
 //Region of Machine Learning Methods
 //****************************************************************************************
+
+    /**
+     *
+     * @param path:String
+     * @param separator:char
+     * @param headerLines:int
+     * @param indexOfClassLabels:int
+     * @param typeClassification:int
+     * @return JMatrix
+     */
     public JMatrix readCSV(String path, char separator, int headerLines, int indexOfClassLabels, int typeClassification) {
         float[][] f = FactoryUtils.readCSV_Float(path, separator, headerLines);
         featureList = FactoryUtils.readCSV_featureNames(path, separator);
@@ -522,6 +689,14 @@ public class JMatrix {
         return this;
     }
 
+    /**
+     *
+     * @param path:Sting
+     * @param headerLines:int
+     * @param indexOfClassLabels:intr
+     * @param typeClassification:int
+     * @return JMatrix
+     */
     public JMatrix readCSV(String path, int headerLines, int indexOfClassLabels, int typeClassification) {
         return readCSV(path, ',', headerLines, indexOfClassLabels, typeClassification);
     }
@@ -529,11 +704,20 @@ public class JMatrix {
 //**************************************************************************************************************
 //Region of Time functions
 //**************************************************************************************************************
+
+    /**
+     *
+     * @return JMatrix
+     */
     public JMatrix tic() {
         currentTime = System.nanoTime();
         return this;
     }
 
+    /**
+     *
+     * @return JMatrix
+     */
     public JMatrix toc() {
         long t2 = System.nanoTime();
         double elapsed = (t2 - currentTime) / 1000000000.0;
@@ -542,6 +726,11 @@ public class JMatrix {
         return this;
     }
 
+    /**
+     *
+     * @param msg.String
+     * @return JMatrix
+     */
     public JMatrix toc(String msg) {
         long t2 = System.nanoTime();
         double elapsed = (t2 - currentTime) / 1000000.0;
@@ -553,12 +742,24 @@ public class JMatrix {
 //**************************************************************************************************************
 //Region of I/O functions
 //**************************************************************************************************************
+
+    /**
+     *
+     * @param message:String
+     * @param variable_key:String
+     * @return JMatrix
+     */
     public JMatrix input(String message, String variable_key) {
         String variable = JOptionPane.showInputDialog(message);
         variableMap.put(variable_key, variable);
         return this;
     }
 
+    /**
+     *
+     * @param key:String
+     * @return JMatrix
+     */
     public String getVariable(String key) {
         if (variableMap.containsKey(key)) {
             return variableMap.get(key);
