@@ -54,6 +54,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import com.cezerilab.openjazarilibrary.utils.CustomComparatorForCPoint;
 import com.cezerilab.openjazarilibrary.utils.MersenneTwister;
 import com.cezerilab.openjazarilibrary.utils.UniqueRandomNumbers;
+import com.google.gson.Gson;
 import org.w3c.dom.Element;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -3468,6 +3469,23 @@ public final class FactoryUtils {
         }
         return ret;
     }
+    
+    /**
+     * mapping value in the range to the target range
+     * @param val: original value
+     * @param from_s:initial range start point 
+     * @param to_s:initial range end point
+     * @param from_m:mapped range start point
+     * @param to_m:mapped range end point
+     * @return mapped value
+     */
+    public static double map(double val, double from_s,double to_s,double from_m,double to_m){
+        double ret=0;
+        double initial_range=to_s-from_s;
+        double end_range=to_m-from_m;
+        ret=from_m+(Math.abs(val-from_s)/initial_range)*end_range;
+        return ret;        
+    }
 
     public static void makeDirectory(String fn) {
         new File(fn).mkdir();
@@ -4869,6 +4887,16 @@ public final class FactoryUtils {
             normB += Math.pow(vectorB[i], 2);
         }
         return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+    }
+    
+    public static Object deepCopy(Object obj){
+        return deepClone(obj);
+    }
+    
+    public static Object deepClone(Object obj){
+        Gson gson = new Gson();
+        Object ret=gson.fromJson(gson.toJson(obj), obj.getClass());
+        return ret;
     }
 
 }

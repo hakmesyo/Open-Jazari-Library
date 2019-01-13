@@ -53,8 +53,117 @@ public class FXCharts extends Application {
     private static String title = "Java FX Chart";
     private static String seriesName = "my data";
     private static double[] xData;
+    private static CMatrix cMatrix;
 
-    public static void setCMatrix(CMatrix cMatrix) {
+    @Override
+    public void start(Stage primaryStage) {
+//        title=cMatrix.chartTitle;
+//        List<String> names = cMatrix.getColumnNames();
+//        double[] xData = cMatrix.getXData4FX();
+//        xAxis = new NumberAxis();
+//        yAxis = new NumberAxis();
+//        
+//	xAxis.setAutoRanging(true);
+//	xAxis.setForceZeroInRange(false);
+//	yAxis.setAutoRanging(true);
+//	yAxis.setForceZeroInRange(false);
+//        
+//        lineChartData = FXCollections.observableArrayList();
+//        lineChart = new LineChart(xAxis, yAxis, lineChartData);
+//        lineChart.setAnimated(false);
+//        lineChart.setCreateSymbols(false);
+//
+//        StackPane chartContainer = new StackPane();
+//        chartContainer.getChildren().add(lineChart);
+//
+//        xAxis.setLabel(xAxisLabel);
+//        yAxis.setLabel(yAxisLabel);
+//        lineChart.setTitle(title);
+//
+//        // populating the series with data
+//        double[][] d = cMatrix.transpose().toDoubleArray2D();
+//        List<XYChart.Series<Double, Double>> lst = new ArrayList();
+//        for (int i = 0; i < d.length; i++) {
+//            XYChart.Series<Double, Double> series = new XYChart.Series();
+//            if (names != null && names.size() > i) {
+//                series.setName(names.get(i));
+//            } else {
+//                series.setName("series " + i);
+//            }
+//            if (xData != null && xData.length == d[i].length) {
+//                for (int j = 0; j < d[i].length; j++) {
+//                    XYChart.Data<Double, Double> data=new XYChart.Data<Double, Double>(xData[j], d[i][j]);
+//                    series.getData().add(data);
+//                    data.setNode(new FXCharts.HoveredThresholdNode(xData[j], d[i][j]));
+//                }
+//            } else {
+//                for (int j = 0; j < d[i].length; j++) {
+//                    XYChart.Data<Double, Double> data=new XYChart.Data<Double, Double>(j * 1.0, d[i][j]);
+//                    series.getData().add(data);
+//                    data.setNode(new FXCharts.HoveredThresholdNode(j * 1.0, d[i][j]));
+//                }
+//            }
+//            lst.add(series);
+//        }
+//        lineChartData.addAll(lst);
+//
+//        Rectangle zoomRect = new Rectangle();
+//        zoomRect.setManaged(false);
+//        zoomRect.setFill(Color.LIGHTSEAGREEN.deriveColor(0, 1, 1, 0.5));
+//        chartContainer.getChildren().add(zoomRect);
+//        
+//        setUpZooming(zoomRect, lineChart);
+//
+//        final HBox controls = new HBox(10);
+//        controls.setPadding(new Insets(10));
+//        controls.setAlignment(Pos.CENTER);
+//
+//        final Button zoomButton = new Button("Zoom");
+//        final Button resetButton = new Button("Reset");
+//        zoomButton.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                System.out.println("zoom isteği");
+//                doZoom(zoomRect, lineChart);
+//            }
+//        });
+//        resetButton.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                System.out.println("reset isteği");
+//                final NumberAxis xAxis = (NumberAxis) lineChart.getXAxis();
+//                xAxis.setLowerBound(0);
+//                xAxis.setUpperBound(1000);
+//                final NumberAxis yAxis = (NumberAxis) lineChart.getYAxis();
+//                yAxis.setLowerBound(0);
+//                yAxis.setUpperBound(1000);
+//
+//                zoomRect.setWidth(0);
+//                zoomRect.setHeight(0);
+//            }
+//        });
+//        final BooleanBinding disableControls
+//                = zoomRect.widthProperty().lessThan(5)
+//                        .or(zoomRect.heightProperty().lessThan(5));
+//        zoomButton.disableProperty().bind(disableControls);
+//        controls.getChildren().addAll(zoomButton, resetButton);
+//
+//        final BorderPane root = new BorderPane();
+//        root.setCenter(chartContainer);
+//        root.setBottom(controls);
+//
+////        Stage stage = new Stage();
+////        new ZoomManager(chartContainer, lineChart, lineChartData);
+//        Scene scene = new Scene(root, 800, 600);
+//
+//        primaryStage.setScene(scene);
+////        stage.setOpacity(0.95);
+//        primaryStage.show();
+        
+    }
+    
+    public static void setCMatrix(CMatrix cm) {
+        cMatrix=cm;
         Platform.runLater(() -> {
             setChart(cMatrix);
         });
@@ -82,6 +191,7 @@ public class FXCharts extends Application {
 //        });
 //    }
     private static void setChart(CMatrix cm) {
+        title=cm.chartTitle;
         List<String> names = cm.getColumnNames();
         double[] xData = cm.getXData4FX();
         xAxis = new NumberAxis();
@@ -172,7 +282,7 @@ public class FXCharts extends Application {
         zoomButton.disableProperty().bind(disableControls);
         controls.getChildren().addAll(zoomButton, resetButton);
 
-        BorderPane root = new BorderPane();
+        final BorderPane root = new BorderPane();
         root.setCenter(chartContainer);
         root.setBottom(controls);
 
@@ -226,10 +336,6 @@ public class FXCharts extends Application {
                 rect.setHeight(Math.abs(y - mouseAnchor.get().getY()));
             }
         });
-    }
-
-    @Override
-    public void start(Stage stage) {
     }
 
     /**

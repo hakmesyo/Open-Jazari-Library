@@ -8,7 +8,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class LineChartSample extends Application {
+public class TestLineChartFX extends Application {
 
     public static void main(final String[] args) {
 	launch(args);

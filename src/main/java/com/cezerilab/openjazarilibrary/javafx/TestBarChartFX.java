@@ -29,7 +29,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class MiniTest extends Application {
+public class TestBarChartFX extends Application {
 
     final static String austria = "Austria";
     final static String brazil = "Brazil";

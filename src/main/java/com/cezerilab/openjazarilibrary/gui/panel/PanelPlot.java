@@ -81,7 +81,7 @@ public class PanelPlot extends javax.swing.JPanel {
         Graphics2D gr = (Graphics2D) gr1;
         Font fnt = gr.getFont();
         gr.setFont(new Font(fnt.getFontName(), 1, 18));
-        gr.setColor(Color.lightGray);
+        gr.setColor(new Color(244, 244, 244));
         int w = getWidth();
         int h = getHeight();
         gr.fillRect(0, 0, w, h);
@@ -95,7 +95,7 @@ public class PanelPlot extends javax.swing.JPanel {
         int px = 100;
         int py = h - 70;
         int fromRight = 100;
-        gr.setColor(Color.white);
+        gr.setColor(new Color(244, 244, 244));
         int fromLeft = 100;
         int fromTop = 50;
         int canvas_width = w - 2 * fromLeft;
@@ -128,7 +128,7 @@ public class PanelPlot extends javax.swing.JPanel {
         }
         gr.setStroke(new BasicStroke());
         paintItemList(gr, figureAttribute.items);
-        gr.setColor(Color.black);
+        gr.setColor(new Color(195, 195, 195));
         drawYAxis(gr, px, py, w, fromRight, f.toDoubleArray2D());
         drawXAxis(gr, px, py, w, fromRight, f.toDoubleArray2D());
     }
@@ -217,6 +217,7 @@ public class PanelPlot extends javax.swing.JPanel {
     }
 
     private void drawDataPoints(Graphics2D gr, int[] xp, int[] yp, int ncols, int nr) {
+        gr.setStroke(new BasicStroke(3));
         String pType = figureAttribute.pointType;
         if (pType.contains("-")) {
             if (figureAttribute.isStroke) {
@@ -227,7 +228,7 @@ public class PanelPlot extends javax.swing.JPanel {
                 gr.drawPolyline(xp, yp, f.getColumnNumber());
             }
         }
-        if (!(pType.contains("-") && pType.length()==1)) {
+        if (!(pType.contains("-") && pType.length() == 1)) {
             String p = ".";
             if (pType.length() > 1) {
                 p = pType.substring(1, 2);
@@ -253,7 +254,7 @@ public class PanelPlot extends javax.swing.JPanel {
                 }
                 default: {
                     for (int i = 0; i < xp.length; i++) {
-                        gr.drawString(p, xp[i]-3, yp[i]+10);
+                        gr.drawString(p, xp[i] - 3, yp[i] + 10);
                     }
                     break;
 
@@ -317,6 +318,7 @@ public class PanelPlot extends javax.swing.JPanel {
             }
              */
         }
+        gr.setStroke(new BasicStroke(1));
     }
 
     private void checkDataPoints(Graphics gr, CPoint[][] mp, int px, int py) {
@@ -378,6 +380,7 @@ public class PanelPlot extends javax.swing.JPanel {
 //        int l = y0 - 60;
         int l = y0 - 50;
         int top = 50;
+        gr.setColor(new Color(195, 195, 195));
         gr.drawLine(x0, top, x0, y0 + 20);
         gr.drawLine(w - fromRight, top, w - fromRight, y0 + 20);
         double delta = deltaY / n;
@@ -386,7 +389,8 @@ public class PanelPlot extends javax.swing.JPanel {
         int q = 0;
         int art = 5;
         int shift = 25;
-        for (int i = 0; i <= n; i++) {
+        gr.setColor(new Color(135, 135, 135));
+        for (int i = 1; i <= n; i++) {
             if (maxY > 1) {
                 yVal[i] = (Math.round((i * delta + minY) * n)) / n;
             } else {
@@ -418,10 +422,12 @@ public class PanelPlot extends javax.swing.JPanel {
             maxX = getMaxXValue(d);
         }
         double delta = maxX / n;
+        gr.setColor(new Color(195, 195, 195));
         gr.drawLine(x0, top, w - fromRight, 50);
         gr.drawLine(x0, y0 + 20, w - fromRight, y0 + 20);
         gr.drawString(figureAttribute.axis[0], w - 90, y0 + 20);
         int q = 0;
+        gr.setColor(new Color(135, 135, 135));
         for (int i = 0; i <= n; i++) {
             xVal[i] = (Math.round(minX + i * delta));
             q = (int) (x0 + i * dx);

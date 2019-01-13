@@ -28,7 +28,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class BarChartSample extends Application {
+public class TestBarChartFX_2 extends Application {
     final static String austria = "Austria";
     final static String brazil = "Brazil";
     final static String france = "France";

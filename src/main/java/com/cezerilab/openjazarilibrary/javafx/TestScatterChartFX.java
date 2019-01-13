@@ -27,7 +27,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class ScatterChartSample extends Application {
+public class TestScatterChartFX extends Application {
 
     public static void main(final String[] args) {
 	launch(args);

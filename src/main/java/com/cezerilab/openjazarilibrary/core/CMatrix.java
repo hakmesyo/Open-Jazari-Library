@@ -21,8 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-
 /**
  * B. CMatrix class is a core class of Open Cezeri Library (OCL) and it is
  * implemented by Dr.Musa ATAŞ who is the instructor and principal coordinator
@@ -59,17 +57,17 @@
  * Save file
  * Restart/start netbeans.
  * https://blogs.oracle.com/tao/entry/set_netbeans_user_interface_language
- * 
- * 
+ *
+ *
  * readme
- *Open Jazari Library for Java (OJL4J) 
+ *Open Jazari Library for Java (OJL4J)
  * Open Jazari Library for Java (OJL4J), formerly known as Open Cezeri Library is a Java based Matrix, Vectorization, Image Processing, Machine Learning (Weka + DL4J), Data Visualization and Analysis DSL (Domain Specific Language) which enables developers write just single line of code. It achieves this simplicity and ease of use by applying Fluent Interface and/or Method Chaining design pattern principle. Researchers, students, academicians and developers can code with their prior knowledge. Forexample, if he has already known Matlab methods such as plot, imshow he can easily find the similar methods in the OJL. It is also true for Python developer.
-
-You can refer this article and blog site for further information Ataş, Musa. "Open Cezeri Library: A novel java based matrix and computer vision framework." Computer Applications in Engineering Education (2016).
-
-https://open-cezeri-library.blogspot.com/
-
-https://www.youtube.com/watch?v=XiL8RtApi78
+ *
+ * You can refer this article and blog site for further information Ataş, Musa. "Open Cezeri Library: A novel java based matrix and computer vision framework." Computer Applications in Engineering Education (2016).
+ *
+ * https://open-cezeri-library.blogspot.com/
+ *
+ * https://www.youtube.com/watch?v=XiL8RtApi78
  *
  */
 package com.cezerilab.openjazarilibrary.core;
@@ -135,7 +133,6 @@ import weka.core.matrix.Matrix;
 //enum Dimension {
 //    row, column
 //}
-
 /**
  *
  * @author BAP1
@@ -161,6 +158,7 @@ public final class CMatrix implements Serializable {
     private double[] xData4FX;
     //public static CMatrix lastCM;
     private static Random random = new SecureRandom();
+    public String chartTitle="ChartFX";
 
     /**
      * runOnce
@@ -177,6 +175,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * buildFrameImage
+     *
      * @return CMatrix
      */
     public CMatrix buildFrameImage() {
@@ -189,6 +188,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * help
+     *
      * @return CMatrix
      */
     public CMatrix buildFramePlot() {
@@ -201,6 +201,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * help
+     *
      * @return Instances
      */
     public Instances getWekaInstance() {
@@ -209,7 +210,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * help
-     * 
+     *
      * @param wekaInstance is an Instance
      * @return CMatrix
      */
@@ -221,6 +222,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * help
+     *
      * @return int
      */
     public int getRowNumber() {
@@ -229,6 +231,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * help
+     *
      * @return int
      */
     public int getColumnNumber() {
@@ -237,6 +240,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * help
+     *
      * @return int
      */
     public BufferedImage getImage() {
@@ -245,6 +249,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * help
+     *
      * @param image : BufferedImage
      * @return CMatrix
      */
@@ -564,7 +569,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * getInstancesFromARFF
-     * 
+     *
      * @param m Instances
      * @return CMatrix
      */
@@ -676,6 +681,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * help
+     *
      * @param path : String
      * @return String 2d array
      */
@@ -691,6 +697,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * help
+     *
      * @param path : String
      * @param classIndex : int
      * @return 2d String array
@@ -842,8 +849,6 @@ public final class CMatrix implements Serializable {
         this.array = FactoryUtils.transpose(m);
         this.returnedValue = new CReturn();
     }
-    
-    
 
     private CMatrix(byte[] d) {
         double[][] m = new double[1][d.length];
@@ -900,6 +905,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * help
+     *
      * @return 2d double array
      */
     public double[][] toDoubleArray2D() {
@@ -1500,7 +1506,7 @@ public final class CMatrix implements Serializable {
     /**
      *
      * @param r:int
-     * @param c:int 
+     * @param c:int
      * @return CMatrix
      */
     public CMatrix ones(int r, int c) {
@@ -1732,6 +1738,7 @@ public final class CMatrix implements Serializable {
      * Plot scatter graph of two vector (double[] array) as an input parameter.
      *
      * Notification: two vectors should be the same size
+     *
      * @param x:double[]
      * @param y:double[]
      *
@@ -1783,7 +1790,7 @@ public final class CMatrix implements Serializable {
 
     /**
      * plot the curves of each column in the matrix
-     * 
+     *
      * @param frm:FramePlot
      *
      * @return CMatrix
@@ -1795,8 +1802,8 @@ public final class CMatrix implements Serializable {
     }
 
     /**
-     * By using single plot frame, this command try to redraw updated matrix
-     * it is useful if you make animation or moving simulation within the loop
+     * By using single plot frame, this command try to redraw updated matrix it
+     * is useful if you make animation or moving simulation within the loop
      *
      * @return CMatrix
      */
@@ -1809,10 +1816,10 @@ public final class CMatrix implements Serializable {
         framePlot.setVisible(true);
         return this;
     }
-    
+
     /**
-     * By using single plot frame, this command try to redraw updated matrix
-     * it is useful if you make animation or moving simulation within the loop
+     * By using single plot frame, this command try to redraw updated matrix it
+     * is useful if you make animation or moving simulation within the loop
      *
      * @return CMatrix
      */
@@ -1941,7 +1948,7 @@ public final class CMatrix implements Serializable {
      * show on single frame for each call only one frame is maintained
      *
      * @return CMatrix
-     */ 
+     */
     public CMatrix imshowRefresh() {
         return imshowRefresh("");
     }
@@ -2071,7 +2078,6 @@ public final class CMatrix implements Serializable {
 //        frm.setVisible(true);
 //        return this;
 //    }
-    
     /**
      *
      * @return CMatrix
@@ -2133,7 +2139,6 @@ public final class CMatrix implements Serializable {
 //        ret.image = ImageProcess.toHSVColorSpace(ret.image);
 //        return ret;
 //    }
-
     /**
      *
      * @return CMatrix
@@ -2693,13 +2698,15 @@ public final class CMatrix implements Serializable {
      * @return CMatrix
      */
     public CMatrix transpose() {
-        CMatrix ret = CMatrix.this.zeros(getColumnNumber(), getRowNumber());
-        ret.name = this.name + "|transpose";
-        for (int i = 0; i < getColumnNumber(); i++) {
-            for (int j = 0; j < getRowNumber(); j++) {
-                ret.array[i][j] = array[j][i];
-            }
-        }
+        CMatrix ret=this.clone(this);
+        ret.array=FactoryMatrix.transpose(ret.array);
+//        CMatrix ret = CMatrix.this.zeros(getColumnNumber(), getRowNumber());
+//        ret.name = this.name + "|transpose";
+//        for (int i = 0; i < getColumnNumber(); i++) {
+//            for (int j = 0; j < getRowNumber(); j++) {
+//                ret.array[i][j] = array[j][i];
+//            }
+//        }
 //        returnedValue.rgbImageArray = FactoryUtils.clone(rgbImageArray);
         ret.image = null;
         ret.name = this.name + "|transpose";
@@ -2832,7 +2839,6 @@ public final class CMatrix implements Serializable {
 //        }
 //        return ret;
 //    }
-
     /**
      *
      * @param m: CMatrix
@@ -4289,8 +4295,6 @@ public final class CMatrix implements Serializable {
 //    public void toXMLPrintln() {
 //        System.out.println(FactoryUtils.toXML(this.clone(this)));
 //    }
-    
-    
     private int[] checkParam(String p, int n) {
 //        String s = p.substring(1, p.length() - 1);
         String s = p;
@@ -4706,10 +4710,10 @@ public final class CMatrix implements Serializable {
     }
 
     /**
-     *
-     * @param i:int
-     * @param j:int
-     * @param p:double
+     * Try to set the value of row'th and column'th position of CMatrix
+     * @param i:int row position
+     * @param j:int column position
+     * @param p:double updated matrix value
      * @return CMatrix
      */
     public CMatrix setXY(int i, int j, double p) {
@@ -4718,6 +4722,17 @@ public final class CMatrix implements Serializable {
         ret.array[i][j] = p;
         return ret;
     }
+    
+    /**
+     * set the title of charts (ie. plots)
+     * @param chartTitle:Title of chart
+     * @return CMatrix
+     */
+    public CMatrix setTitle(String chartTitle) {
+        this.chartTitle=chartTitle;
+        return this;
+    }
+    
 
     /**
      * parametresiz çağrılırsa matrisin 0,0 elemanını geri gönderir
@@ -7022,7 +7037,7 @@ public final class CMatrix implements Serializable {
 
     /**
      *
-     * 
+     *
      */
     public void holdOn() {
         hold_on = true;
@@ -7030,7 +7045,7 @@ public final class CMatrix implements Serializable {
 
     /**
      *
-     * 
+     *
      */
     public void holdOff() {
         hold_on = false;
@@ -7586,20 +7601,20 @@ public final class CMatrix implements Serializable {
         return im2bw();
     }
 
-   /**
+    /**
      *
      * @param thr:int
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix binarizeImage(int thr) {
         return im2bw(thr);
     }
 
-   /**
+    /**
      *
      * @param t1:int
      * @param t2:int
-     * @return  CMatrix
+     * @return CMatrix
      */
     private CMatrix imthreshold(int t1, int t2) {
         CMatrix ret = this.clone(this);
@@ -7609,11 +7624,11 @@ public final class CMatrix implements Serializable {
         return ret;
     }
 
-   /**
+    /**
      *
      * @param cm:int
      * @param alpha:double
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix overlay(CMatrix cm, double alpha) {
         CMatrix ret = this.clone(this);
@@ -7689,9 +7704,9 @@ public final class CMatrix implements Serializable {
         return ret;
     }
 
-   /**
+    /**
      *
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix im_cropBoundingBox() {
         CMatrix ret = this.clone(this);
@@ -7701,9 +7716,9 @@ public final class CMatrix implements Serializable {
         return ret;
     }
 
-   /**
+    /**
      *
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix reverseOrder() {
         CMatrix ret = this.clone(this);
@@ -7712,9 +7727,9 @@ public final class CMatrix implements Serializable {
         return ret;
     }
 
-   /**
+    /**
      *
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix bitPlaneMSB() {
         CMatrix ret = this.clone(this);
@@ -7723,10 +7738,10 @@ public final class CMatrix implements Serializable {
         return ret;
     }
 
-   /**
+    /**
      *
      * @param n:int
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix bitPlane(int n) {
         CMatrix ret = this.clone(this);
@@ -7749,7 +7764,7 @@ public final class CMatrix implements Serializable {
     /**
      *
      * @param n:int
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix imbitget(int n) {
         return bitPlane(n);
@@ -7758,7 +7773,7 @@ public final class CMatrix implements Serializable {
     /**
      *
      * @param n:int
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix getImageBitSlicing(int n) {
         return bitPlane(n);
@@ -7767,7 +7782,7 @@ public final class CMatrix implements Serializable {
     /**
      *
      * @param n:int
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix getBitPlane(int n) {
         return bitPlane(n);
@@ -7776,7 +7791,7 @@ public final class CMatrix implements Serializable {
     /**
      *
      * @param n:int
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix im2QuantizationLevel(int n) {
         if (n >= 256) {
@@ -7791,7 +7806,7 @@ public final class CMatrix implements Serializable {
 
     /**
      *
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix equalizeHistogramMusa() {
         CMatrix ret = this.clone(this);
@@ -7813,7 +7828,7 @@ public final class CMatrix implements Serializable {
 
     /**
      *
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix histeq() {
         return equalizeHistogram();
@@ -7821,7 +7836,7 @@ public final class CMatrix implements Serializable {
 
     /**
      *
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix histeqMusa() {
         return equalizeHistogramMusa();
@@ -7829,7 +7844,7 @@ public final class CMatrix implements Serializable {
 
     /**
      *
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix equalizeHistogram() {
         CMatrix ret = this.clone(this);
@@ -7840,7 +7855,7 @@ public final class CMatrix implements Serializable {
 
     /**
      *
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CPoint getCenterOfGravity() {
         return FactoryImageProcess.getCenterOfGravityGray(array);
@@ -7848,7 +7863,7 @@ public final class CMatrix implements Serializable {
 
     /**
      *
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix smoothMatrix() {
         CMatrix ret = this.clone(this);
@@ -7887,9 +7902,10 @@ public final class CMatrix implements Serializable {
 
     /**
      * param N:for N bit i.e:8 bit produces totally 256 LBP features
+     *
      * @param N CMatrix
      * @param isRegular CMatrix
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix lbp1D(int N, boolean isRegular) {
         return getLBP1D(N, isRegular);
@@ -8166,8 +8182,8 @@ public final class CMatrix implements Serializable {
     }
 
     /**
-     * improved version of plot, based on javafx charts
-     * CMatrix
+     * improved version of plot, based on javafx charts CMatrix
+     *
      * @return CMatrix
      */
     public CMatrix plotFX() {
@@ -8182,6 +8198,7 @@ public final class CMatrix implements Serializable {
      * @return CMatrix
      */
     public CMatrix plotFX(String title) {
+        this.chartTitle=title;
         new ControllerFXCharts(this).show(title);
         return this;
     }
@@ -8353,7 +8370,7 @@ public final class CMatrix implements Serializable {
 
     /**
      *
-     * @return  CMatrix
+     * @return CMatrix
      */
     public CMatrix imdilate() {
         CMatrix ret = this.clone(this);
@@ -8610,7 +8627,7 @@ public final class CMatrix implements Serializable {
         random.setSeed(n);
         return this;
     }
-    
+
     /**
      * set SecureRandom seed in order to guarantee the same results for each
      * draw
@@ -8647,8 +8664,8 @@ public final class CMatrix implements Serializable {
 
     /**
      * select n random sample from the matrix mxn, if mxn is normal matrix it
-     * selects random n rows, if mxn is column vector it selects random n rows, if
-     * mxn is row vector it selects random n column
+     * selects random n rows, if mxn is column vector it selects random n rows,
+     * if mxn is row vector it selects random n column
      *
      * @param n CMatrix
      * @return CMatrix
@@ -8658,20 +8675,141 @@ public final class CMatrix implements Serializable {
         int nr = ret.getRowNumber();
         int nc = ret.getColumnNumber();
         int[] index = FactoryMatrix.rand(n, nr, random);
-        if (nr > 1 && nc >= 1) {            
+        if (nr > 1 && nc >= 1) {
             double[][] d = new double[n][nc];
             for (int i = 0; i < n; i++) {
                 d[i] = ret.array[index[i]];
             }
-            ret=ret.setArray(d);
+            ret = ret.setArray(d);
         } else if (nr == 1) {
-            double[] d=new double[n];
-            double[] ref=ret.toDoubleArray1D();
+            double[] d = new double[n];
+            double[] ref = ret.toDoubleArray1D();
             for (int i = 0; i < n; i++) {
-                d[i]=ref[index[i]];
+                d[i] = ref[index[i]];
             }
-            ret=ret.setArray(d);
-        } 
+            ret = ret.setArray(d);
+        }
+        return ret;
+    }
+
+    /**
+     * generate a kernel of Laplacian of Gaussian so called Mexican Hat as 2D
+     * LoG(x,y) = [(x^2+y^2-2*Sig^2)/Sig^4]*e^(-(x^2+y^2)/(2*Sig^2))
+     *
+     * @param sigma : standard deviation
+     * @return CMatrix
+     */
+    public CMatrix mexicanHat(double sigma) {
+        CMatrix ret = this.clone(this);
+        int nr = ret.getRowNumber();
+        int nc = ret.getColumnNumber();
+        int mid = nr / 2;
+        CMatrix cmx=CMatrix.getInstance().linspace(-mid, mid, nr).replicateColumn(nc).transpose();//.dump();
+        CMatrix cmy=cmx.transpose();//.dump();
+        double std2=sigma*sigma;
+        double std4=std2*std2;
+        CMatrix arg=cmx.multiplyElement(cmx).add(cmy.multiplyElement(cmy)).multiplyScalar(-1).divideScalar(2*std2);
+        CMatrix h=arg.exp();
+        double sumh=h.sumTotal();
+        if (sumh!=0) {
+            h=h.divideScalar(sumh);
+        }
+        CMatrix arg2=cmx.multiplyElement(cmx).add(cmy.multiplyElement(cmy)).minusScalar(2*std2).divideScalar(std4);
+        CMatrix h1=h.multiplyElement(arg2);
+        h=h1.minusScalar(h1.sumTotal()/(ret.getMatrixVolume()));
+        
+        return h;
+    }
+    
+    public double getMatrixVolume(){
+        return this.getRowNumber()*this.getColumnNumber();
+    }
+
+    /**
+     * generate mesh grid matrix along x axes
+     * it is used for applying 2D functions on the plane in a loop-less manner
+     * resembles to the Matlab meshgrid command
+     * @param from:initial point
+     * @param to:end point
+     * @return CMatrix
+     */
+    public CMatrix meshGridX(double from, double to) {
+        CMatrix ret = this.clone(this);
+        ret.array=FactoryMatrix.meshGridX(ret.array,from,to);
+        return ret;
+    }
+    
+    /**
+     * generate mesh grid matrix along x axes in default
+     * it is used for applying 2D functions on the plane in a loop-less manner
+     * resembles to the Matlab meshgrid command
+     * @param from:initial point
+     * @param to:end point
+     * @return CMatrix
+     */
+    public CMatrix meshGrid(double from, double to) {
+        return meshGridX(from, to);
+    }
+    /**
+     * generate mesh grid matrix along x axes 
+     * yields square matrix of numberOf x numberOf
+     * it is used for applying 2D functions on the plane in a loop-less manner
+     * resembles to the Matlab meshgrid command
+     * @param from:initial point
+     * @param to:end point
+     * @param numberOf:# of elements
+     * @return CMatrix
+     */
+    public CMatrix meshGridX(double from, double to,int numberOf) {
+        CMatrix ret = this.clone(this);
+        ret.array=FactoryMatrix.meshGridX(from,to,numberOf);
+        return ret;
+    }
+    /**
+     * generate mesh grid matrix along x axes in default
+     * yields square matrix of numberOf x numberOf
+     * it is used for applying 2D functions on the plane in a loop-less manner
+     * resembles to the Matlab meshgrid command
+     * @param from:initial point
+     * @param to:end point
+     * @param numberOf:# of elements
+     * @return CMatrix
+     */
+    public CMatrix meshGrid(double from, double to,int numberOf) {
+        return meshGridX(from, to, numberOf);
+    }
+    /**
+     * generate mesh grid matrix along y axes
+     * it is used for applying 2D functions on the plane in a loop-less manner
+     * resembles to the Matlab meshgrid command
+     * @param from:initial point
+     * @param to:end point
+     * @return CMatrix
+     */
+    public CMatrix meshGridY(double from, double to) {
+        CMatrix ret = this.clone(this);
+        ret.array=FactoryMatrix.meshGridY(ret.array,from,to);
+        return ret;
+    }
+    /**
+     * generate mesh grid matrix along y axes 
+     * yields square matrix of numberOf x numberOf
+     * it is used for applying 2D functions on the plane in a loop-less manner
+     * resembles to the Matlab meshgrid command
+     * @param from:initial point
+     * @param to:end point
+     * @param numberOf:# of elements
+     * @return CMatrix
+     */
+    public CMatrix meshGridY(double from, double to,int numberOf) {
+        CMatrix ret = this.clone(this);
+        ret.array=FactoryMatrix.meshGridY(from,to,numberOf);
+        return ret;
+    }
+    
+    public CMatrix meshGridIterateForward(){
+        CMatrix ret = this.clone(this);
+        ret.array=FactoryMatrix.meshGridIterateForward(ret.array);
         return ret;
     }
 

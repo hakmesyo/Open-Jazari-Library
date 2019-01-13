@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import com.cezerilab.openjazarilibrary.types.Dimension;
+import com.google.gson.Gson;
 import jwave.Transform;
 import jwave.transforms.FastWaveletTransform;
 import jwave.transforms.wavelets.haar.Haar1;
@@ -19,6 +20,7 @@ import jwave.transforms.wavelets.daubechies.Daubechies4;
 import jwave.transforms.wavelets.daubechies.Daubechies5;
 import jwave.transforms.wavelets.daubechies.Daubechies6;
 import jwave.transforms.wavelets.daubechies.Daubechies7;
+import org.apache.commons.lang3.SerializationUtils;
 
 /**
  * @author Dr. Musa ATAŞ It is developed for performance issues for
@@ -913,219 +915,134 @@ public final class FactoryMatrix implements Serializable {
     }
 
     public static double[][] transpose(double[][] d) {
-        int r = d.length;
-        int c = d[0].length;
-        if (r == c) {
-            double temp = 0;
-            for (int i = 0; i < (r / 2 + 1); i++) {
-                for (int j = i; j < c; j++) {
-                    temp = d[i][j];
-                    d[i][j] = d[j][i];
-                    d[j][i] = temp;
-                }
+        int nr = d.length;
+        int nc = d[0].length;
+        double[][] ret = new double[nc][nr];
+        for (int i = 0; i < nc; i++) {
+            for (int j = 0; j < nr; j++) {
+                ret[i][j] = d[j][i];
             }
-            return d;
-        } else {
-            double[][] ret = new double[c][r];
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < c; j++) {
-                    ret[j][i] = d[i][j];
-                }
-            }
-            return ret;
         }
+        return ret;
     }
 
     public static float[][] transpose(float[][] d) {
-        int r = d.length;
-        int c = d[0].length;
-        if (r == c) {
-            float temp = 0;
-            for (int i = 0; i < (r / 2 + 1); i++) {
-                for (int j = i; j < c; j++) {
-                    temp = d[i][j];
-                    d[i][j] = d[j][i];
-                    d[j][i] = temp;
-                }
+        int nr = d.length;
+        int nc = d[0].length;
+        float[][] ret = new float[nc][nr];
+        for (int i = 0; i < nc; i++) {
+            for (int j = 0; j < nr; j++) {
+                ret[i][j] = d[j][i];
             }
-            return d;
-        } else {
-            float[][] ret = new float[c][r];
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < c; j++) {
-                    ret[j][i] = d[i][j];
-                }
-            }
-            return ret;
         }
+        return ret;
     }
 
     public static int[][] transpose(int[][] d) {
-        int r = d.length;
-        int c = d[0].length;
-        if (r == c) {
-            int temp = 0;
-            for (int i = 0; i < (r / 2 + 1); i++) {
-                for (int j = i; j < c; j++) {
-                    temp = d[i][j];
-                    d[i][j] = d[j][i];
-                    d[j][i] = temp;
-                }
+        int nr = d.length;
+        int nc = d[0].length;
+        int[][] ret = new int[nc][nr];
+        for (int i = 0; i < nc; i++) {
+            for (int j = 0; j < nr; j++) {
+                ret[i][j] = d[j][i];
             }
-            return d;
-        } else {
-            int[][] ret = new int[c][r];
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < c; j++) {
-                    ret[j][i] = d[i][j];
-                }
-            }
-            return ret;
         }
+        return ret;
     }
 
     public static long[][] transpose(long[][] d) {
-        int r = d.length;
-        int c = d[0].length;
-        if (r == c) {
-            long temp = 0;
-            for (int i = 0; i < (r / 2 + 1); i++) {
-                for (int j = i; j < c; j++) {
-                    temp = d[i][j];
-                    d[i][j] = d[j][i];
-                    d[j][i] = temp;
-                }
+        int nr = d.length;
+        int nc = d[0].length;
+        long[][] ret = new long[nc][nr];
+        for (int i = 0; i < nc; i++) {
+            for (int j = 0; j < nr; j++) {
+                ret[i][j] = d[j][i];
             }
-            return d;
-        } else {
-            long[][] ret = new long[c][r];
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < c; j++) {
-                    ret[j][i] = d[i][j];
-                }
-            }
-            return ret;
         }
+        return ret;
     }
 
     public static byte[][] transpose(byte[][] d) {
-        int r = d.length;
-        int c = d[0].length;
-        if (r == c) {
-            byte temp = 0;
-            for (int i = 0; i < (r / 2 + 1); i++) {
-                for (int j = i; j < c; j++) {
-                    temp = d[i][j];
-                    d[i][j] = d[j][i];
-                    d[j][i] = temp;
-                }
+        int nr = d.length;
+        int nc = d[0].length;
+        byte[][] ret = new byte[nc][nr];
+        for (int i = 0; i < nc; i++) {
+            for (int j = 0; j < nr; j++) {
+                ret[i][j] = d[j][i];
             }
-            return d;
-        } else {
-            byte[][] ret = new byte[c][r];
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < c; j++) {
-                    ret[j][i] = d[i][j];
-                }
-            }
-            return ret;
         }
+        return ret;
     }
 
     public static short[][] transpose(short[][] d) {
-        int r = d.length;
-        int c = d[0].length;
-        if (r == c) {
-            short temp = 0;
-            for (int i = 0; i < (r / 2 + 1); i++) {
-                for (int j = i; j < c; j++) {
-                    temp = d[i][j];
-                    d[i][j] = d[j][i];
-                    d[j][i] = temp;
-                }
+        int nr = d.length;
+        int nc = d[0].length;
+        short[][] ret = new short[nc][nr];
+        for (int i = 0; i < nc; i++) {
+            for (int j = 0; j < nr; j++) {
+                ret[i][j] = d[j][i];
             }
-            return d;
-        } else {
-            short[][] ret = new short[c][r];
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < c; j++) {
-                    ret[j][i] = d[i][j];
-                }
-            }
-            return ret;
         }
+        return ret;
     }
 
     public static char[][] transpose(char[][] d) {
-        int r = d.length;
-        int c = d[0].length;
-        if (r == c) {
-            char temp;
-            for (int i = 0; i < (r / 2 + 1); i++) {
-                for (int j = i; j < c; j++) {
-                    temp = d[i][j];
-                    d[i][j] = d[j][i];
-                    d[j][i] = temp;
-                }
+        int nr = d.length;
+        int nc = d[0].length;
+        char[][] ret = new char[nc][nr];
+        for (int i = 0; i < nc; i++) {
+            for (int j = 0; j < nr; j++) {
+                ret[i][j] = d[j][i];
             }
-            return d;
-        } else {
-            char[][] ret = new char[c][r];
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < c; j++) {
-                    ret[j][i] = d[i][j];
-                }
-            }
-            return ret;
         }
+        return ret;
     }
 
     public static boolean[][] transpose(boolean[][] d) {
-        int r = d.length;
-        int c = d[0].length;
-        if (r == c) {
-            boolean temp = false;
-            for (int i = 0; i < (r / 2 + 1); i++) {
-                for (int j = i; j < c; j++) {
-                    temp = d[i][j];
-                    d[i][j] = d[j][i];
-                    d[j][i] = temp;
-                }
+        int nr = d.length;
+        int nc = d[0].length;
+        boolean[][] ret = new boolean[nc][nr];
+        for (int i = 0; i < nc; i++) {
+            for (int j = 0; j < nr; j++) {
+                ret[i][j] = d[j][i];
             }
-            return d;
-        } else {
-            boolean[][] ret = new boolean[c][r];
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < c; j++) {
-                    ret[j][i] = d[i][j];
-                }
-            }
-            return ret;
         }
+        return ret;
     }
 
     public static String[][] transpose(String[][] d) {
-        int r = d.length;
-        int c = d[0].length;
-        if (r == c) {
-            String temp;
-            for (int i = 0; i < (r / 2 + 1); i++) {
-                for (int j = i; j < c; j++) {
-                    temp = d[i][j];
-                    d[i][j] = d[j][i];
-                    d[j][i] = temp;
-                }
+        int nr = d.length;
+        int nc = d[0].length;
+        String[][] ret = new String[nc][nr];
+        for (int i = 0; i < nc; i++) {
+            for (int j = 0; j < nr; j++) {
+                ret[i][j] = d[j][i];
             }
-            return d;
-        } else {
-            String[][] ret = new String[c][r];
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < c; j++) {
-                    ret[j][i] = d[i][j];
-                }
-            }
-            return ret;
         }
+        return ret;
+    }
+
+    public static <T> T[][] deepCopy(T[][] matrix) {
+        return java.util.Arrays.stream(matrix).map(el -> el.clone()).toArray($ -> matrix.clone());
+    }
+        
+    public static <T> T[][] deepClone(T[][] matrix) {
+        return java.util.Arrays.stream(matrix).map(el -> el.clone()).toArray($ -> matrix.clone());
+    }
+    
+
+    public static Object[][] transpose(Object[][] d) {
+        int nr = d.length;
+        int nc = d[0].length;
+        Object[][] dc=deepCopy(d);
+        Object[][] ret = new Object[nc][nr];
+        for (int i = 0; i < nc; i++) {
+            for (int j = 0; j < nr; j++) {
+                //ret[i][j] = FactoryUtils.deepClone(dc[j][i]);
+                ret[i][j] = dc[j][i];
+            }
+        }
+        return ret;
     }
 
     /**
@@ -1814,7 +1731,7 @@ public final class FactoryMatrix implements Serializable {
      * @param nc: padding number of columns (padding width as horizontal)
      * @param val : padding value
      * @return q
-     */ 
+     */
     public static float[][] padarray(float[][] d, int nr, int nc, float val) {
         int r = d.length + 2 * nr;
         int c = d[0].length + 2 * nc;
@@ -2477,8 +2394,8 @@ public final class FactoryMatrix implements Serializable {
     }
 
     public static double[][] fillRandMatrix(double[][] d, Random rnd) {
-        int nr=d.length;
-        int nc=d[0].length;
+        int nr = d.length;
+        int nc = d[0].length;
         for (int i = 0; i < nr; i++) {
             for (int j = 0; j < nc; j++) {
                 d[i][j] = rnd.nextDouble();
@@ -2497,7 +2414,7 @@ public final class FactoryMatrix implements Serializable {
         }
         return d;
     }
-    
+
     public static double[][] fillRandMatrix(double[][] d, int max, Random rnd) {
 //        SecureRandom r = new SecureRandom();
         for (int i = 0; i < d.length; i++) {
@@ -2529,7 +2446,7 @@ public final class FactoryMatrix implements Serializable {
     }
 
     public static double[][] fillRandMatrix(double[][] d, int min, int max, Random rnd) {
-       for (int i = 0; i < d.length; i++) {
+        for (int i = 0; i < d.length; i++) {
             for (int j = 0; j < d[0].length; j++) {
                 d[i][j] = min + rnd.nextDouble() * (max - min);
             }
@@ -2539,7 +2456,7 @@ public final class FactoryMatrix implements Serializable {
 
     public static double[][] fillRandMatrix(double[][] d, int min, int max) {
         SecureRandom r = new SecureRandom();
-       for (int i = 0; i < d.length; i++) {
+        for (int i = 0; i < d.length; i++) {
             for (int j = 0; j < d[0].length; j++) {
                 d[i][j] = min + r.nextDouble() * (max - min);
             }
@@ -2686,18 +2603,73 @@ public final class FactoryMatrix implements Serializable {
     }
 
     public static int[] rand(int n, int scale, Random rnd) {
-        int[] ret=new int[n];
+        int[] ret = new int[n];
         for (int i = 0; i < n; i++) {
-            ret[i]=rnd.nextInt(scale);
+            ret[i] = rnd.nextInt(scale);
         }
         return ret;
     }
 
     public static int[] rand(int n, int scale) {
         SecureRandom r = new SecureRandom();
-        int[] ret=new int[n];
+        int[] ret = new int[n];
         for (int i = 0; i < n; i++) {
-            ret[i]=r.nextInt(scale);
+            ret[i] = r.nextInt(scale);
+        }
+        return ret;
+    }
+
+    public static double[][] meshGridX(double from, double to, int numberOf) {
+        double[][] ret = new double[numberOf][numberOf];
+//        double incr = (to - from + 1) / numberOf;
+        double incr = (to - from) / (numberOf-1);
+        for (int i = 0; i < numberOf; i++) {
+            for (int j = 0; j < numberOf; j++) {
+                ret[i][j] = from + j * incr;
+            }
+        }
+        return ret;
+    }
+
+    public static double[][] meshGridY(double from, double to, int numberOf) {
+        return transpose(meshGridX(from, to, numberOf));
+    }
+
+    public static double[][] meshGridX(double[][] array, double from, double to) {
+        int nr = array.length;
+        int nc = array[0].length;
+        double incr = (to - from) / (nc-1);
+        for (int i = 0; i < nr; i++) {
+            for (int j = 0; j < nc; j++) {
+                array[i][j] = from + j * incr;
+            }
+        }
+        return array;
+    }
+
+    public static double[][] meshGridY(double[][] array, double from, double to) {
+        return transpose(meshGridX(array, from, to));
+    }
+
+    public static double[][] meshGridIterateForward(double[][] array) {
+        int nr=array.length;
+        int nc=array[0].length;
+        double[][] ret=clone(array);
+        int mid=nc/2;
+        double[] left=new double[mid];
+        double[] right=new double[mid];
+        for (int i = 0; i < nr; i++) {
+            for (int j = 0; j < mid-1; j++) {
+                ret[i][j]=array[i][j+1];
+            }
+            ret[i][mid-1]=array[i][0];
+            //ret[i][mid]=array[i][1];
+            ret[i][mid]=0;
+            ret[i][mid+1]=array[i][nc-1];
+            
+            for (int j = mid+2; j < nc; j++) {
+                ret[i][j]=array[i][j-1];
+            }
         }
         return ret;
     }
