@@ -56,6 +56,21 @@ public class NoiseOpenSimplex {
     private short[] perm;
     private short[] permGradIndex3D;
 
+    public static void main(String[] args) {
+	int iterations = (int)1E8;
+	double x = 0.5447734756785486781d;
+	double y = 0.4923141242323442d;
+        final double[] result = new double[iterations];
+        final NoiseOpenSimplex simplex = new NoiseOpenSimplex();
+        long start = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            result[i] = simplex.eval(i * x, i * y);
+        }
+        long end = System.nanoTime() - start;
+        System.out.println("2DOpenSimplexNoise speed: " + (end / 1000000d) + "ms");
+
+    }
+
     public NoiseOpenSimplex() {
         this(DEFAULT_SEED);
     }

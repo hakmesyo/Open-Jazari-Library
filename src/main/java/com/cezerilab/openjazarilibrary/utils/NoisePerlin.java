@@ -26,7 +26,7 @@ package com.cezerilab.openjazarilibrary.utils;
 // JAVA REFERENCE IMPLEMENTATION OF IMPROVED NOISE - COPYRIGHT 2002 KEN PERLIN.
 public final class NoisePerlin {
 
-    static public double noise(double x, double y, double z) {
+    public static double noise(double x, double y, double z) {
         int X = (int) Math.floor(x) & 255, // FIND UNIT CUBE THAT
                 Y = (int) Math.floor(y) & 255, // CONTAINS POINT.
                 Z = (int) Math.floor(z) & 255;
@@ -83,13 +83,13 @@ public final class NoisePerlin {
             p[256 + i] = p[i] = permutation[i];
         }
     }
-    
+
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                System.out.println(noise(i*3.4,j*4.5,12.7));
+                System.out.println(noise(i * 3.4, j * 4.5, 12.7));
             }
         }
-        
+
     }
 }

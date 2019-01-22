@@ -542,8 +542,8 @@ public final class FactoryImageProcess {
     /**
      * return Alpha, Red, Green and Blue values of original RGB image
      *
-     * @param image
-     * @return
+     * @param image:BufferedImage
+     * @return int[][]
      */
     public static int[][][] imageToPixelsColorIntV2(BufferedImage image) {
         // Java's peculiar way of extracting pixels is to give them
@@ -1309,7 +1309,7 @@ public final class FactoryImageProcess {
      * @param src:BufferedImage
      * @param w:width
      * @param h:height
-     * @return
+     * @return BufferedImage
      */
     public static BufferedImage resize(BufferedImage src, int w, int h) {
 ////        Image tmp = img.getScaledInstance(w, h, Image.SCALE_FAST);

@@ -10,7 +10,7 @@ public abstract class FactoryPeakDetector {
 	
 	/**
 	 * Detects peaks (calculates local minima and maxima) in the 
-	 * vector <code>values</code>. The resulting list contains
+	 * vector values. The resulting list contains
 	 * maxima at the first position and minima at the last one.
 	 * 
 	 * Maxima and minima maps contain the indice value for a
@@ -18,7 +18,7 @@ public abstract class FactoryPeakDetector {
 	 * 
 	 * A point is considered a maximum peak if it has the maximal
 	 * value, and was preceded (to the left) by a value lower by
-	 * <code>delta</code>.
+	 * delta.
 	 * 
 	 * @param values Vector of values for whom the peaks should be detected
 	 * @param delta The precedor of a maximum peak

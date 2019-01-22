@@ -69,6 +69,9 @@ public final class FactoryUtils {
     /**
      * deserialize to Object from given file. We use the general Object so as
      * that it can work for any Java Class.
+     * @param fileName:String
+     * @return Object
+     * @throws java.io.IOException 
      */
     public static Object deserialize(String fileName) throws IOException,
             ClassNotFoundException {
@@ -82,6 +85,8 @@ public final class FactoryUtils {
 
     /**
      * serialize the given object and save it to given file
+     * @param obj:Object
+     * @param fileName:String
      */
     public static void serialize(Object obj, String fileName)
             throws IOException {
@@ -682,7 +687,7 @@ public final class FactoryUtils {
     /**
      * read matrix written as atext file with ; split token
      *
-     * @return
+     * @return double[][]
      */
     public static double[][] readFromFile() {
         return readFromFile(getFileFromChooserLoad(getDefaultDirectory()).getAbsolutePath(), ";");
@@ -825,9 +830,9 @@ public final class FactoryUtils {
     /**
      * Read sensor data from piezoelectric sensor file
      *
-     * @param file_name
-     * @param count
-     * @return
+     * @param file_name:String
+     * @param count:int
+     * @return double[][]
      */
     public static double[][] readVibrationSensorDataFromFile(String file_name, int count) {
         double[][] d = new double[1][1];
@@ -993,10 +998,10 @@ public final class FactoryUtils {
      * Crop the matrix from p1 to p2 position which are actually identical to
      * top-left and right-bottom positions
      *
-     * @param m:original matrix
-     * @param p1:top-left
-     * @param p2:bottom-right
-     * @return cropped matrix
+     * @param m:double[][] original matrix
+     * @param p1:CPoint top-left
+     * @param p2:CPoint bottom-right
+     * @return double[][]
      */
     public static double[][] getSubMatrix(double[][] m, CPoint p1, CPoint p2) {
         int r = m.length;
@@ -1117,8 +1122,8 @@ public final class FactoryUtils {
     /**
      * Project matrix on X axis or row axis
      *
-     * @param m
-     * @return
+     * @param m:int[][]
+     * @return int[]
      */
     public static int[] getProjectedMatrixOnX(int[][] m) {
         int[] d = new int[m[0].length];
@@ -1133,8 +1138,8 @@ public final class FactoryUtils {
     /**
      * Project matrix on X axis or row axis
      *
-     * @param m
-     * @return
+     * @param m:double[][]
+     * @return int[]
      */
     public static int[] getProjectedMatrixOnX(double[][] m) {
         int[] d = new int[m[0].length];
@@ -1149,8 +1154,8 @@ public final class FactoryUtils {
     /**
      * Project matrix on Y axis or column axis
      *
-     * @param m
-     * @return
+     * @param m:int[][]
+     * @return int[]
      */
     public static int[] getProjectedMatrixOnY(int[][] m) {
         int[] d = new int[m.length];
@@ -1165,8 +1170,8 @@ public final class FactoryUtils {
     /**
      * Project matrix on Y axis or Column axis
      *
-     * @param m
-     * @return
+     * @param m:double[][]
+     * @return int[]
      */
     public static int[] getProjectedMatrixOnY(double[][] m) {
         int[] d = new int[m.length];
@@ -1355,9 +1360,9 @@ public final class FactoryUtils {
      * encrypt some value with salt value by means of xor knowing that double
      * xor with salt yields original value
      *
-     * @param original
-     * @param salt
-     * @return
+     * @param original:int
+     * @param salt:int
+     * @return int
      */
     public static int encrypt(int original, int salt) {
         return original ^ salt;
@@ -1367,9 +1372,9 @@ public final class FactoryUtils {
      * decrypt encrypted value with salt value by means of xor knowing that
      * double xor with salt yields original value
      *
-     * @param encrypted:i
-     * @param salt:i
-     * @return q
+     * @param encrypted:int
+     * @param salt:int
+     * @return int
      */
     public static int decrypt(int encrypted, int salt) {
         return encrypted ^ salt;
@@ -1529,8 +1534,8 @@ public final class FactoryUtils {
     /**
      * parse the file name from file path string
      *
-     * @param str:file path contains filename
-     * @return file name
+     * @param str:String file path contains filename
+     * @return String file name
      */
     public static String getFileNameFromPath(String str) {
         if (str == null || str.equals("") || str.isEmpty()) {
@@ -1544,8 +1549,8 @@ public final class FactoryUtils {
     /**
      * parse the file name from composite file structure/name
      *
-     * @param str:file path contains filename
-     * @return file name
+     * @param str:String file path contains filename
+     * @return String file name
      */
     public static String getFileName(String str) {
         String extension = str.substring(str.lastIndexOf('.') + 1);
@@ -1561,8 +1566,8 @@ public final class FactoryUtils {
     /**
      * b.try to format double number with 3 digit precision by default
      *
-     * @param num
-     * @return
+     * @param num:double[]
+     * @return double[]
      */
     public static double[] formatDouble(double[] num) {
         double[] q = new double[num.length];
@@ -1575,8 +1580,8 @@ public final class FactoryUtils {
     /**
      * b.try to format double number with 3 digit precision by default
      *
-     * @param num
-     * @return
+     * @param num:double[][]
+     * @return double[][]
      */
     public static double[][] formatDouble(double[][] num) {
         double[][] q = new double[num.length][num[0].length];
@@ -1591,8 +1596,9 @@ public final class FactoryUtils {
     /**
      * b.try to format double numer with n digit precision by default
      *
-     * @param num
-     * @return
+     * @param num:double[]
+     * @param n:int
+     * @return double[]
      */
     public static double[] formatDouble(double[] num, int n) {
         double[] q = new double[num.length];
@@ -1605,8 +1611,8 @@ public final class FactoryUtils {
     /**
      * b.try to format double number with 3 digit precision by default
      *
-     * @param num
-     * @return
+     * @param num:double
+     * @return double
      */
     public static double formatDouble(double num) {
         double q = 0;
@@ -1973,9 +1979,9 @@ public final class FactoryUtils {
      * mantığı kullanılarak dizinin başına taşar. Negatif için de durum
      * böyledir.
      *
-     * @param prevComb:i
-     * @param set:i
-     * @return q
+     * @param prevComb:String
+     * @param set:String[]
+     * @return String
      */
     public static String getNeighborSubset(String prevComb, String[] set) {
         int n = find(prevComb, set);
@@ -2038,9 +2044,9 @@ public final class FactoryUtils {
     /**
      * bir matrisin bütün rowlarını index dizisine göre sıralar
      *
-     * @param m
-     * @param index
-     * @return
+     * @param m:CMatrix
+     * @param index:int[]
+     * @return CMatrix
      */
     public static CMatrix sortRows(CMatrix m, int[] index) {
         double[][] d = m.transpose().toDoubleArray2D();
@@ -2161,10 +2167,10 @@ public final class FactoryUtils {
      * applying find command we get 1D column vector in which we want to find
      * the exact coordinate of the specified item of the column vector
      *
-     * @param index:index of the column vector
-     * @param r:original row number of 2D matrix
-     * @param c:original column number of 2D matrix
-     * @return CPoint(row,column)
+     * @param index:int index of the column vector
+     * @param r:int original row number of 2D matrix
+     * @param c:int original column number of 2D matrix
+     * @return CPoint CPoint(row,column)
      */
     public static CPoint to2D(int index, int r, int c) {
         CPoint ret = new CPoint(0, 0);
@@ -2178,8 +2184,8 @@ public final class FactoryUtils {
     /**
      * return the row and column number of the input 2D array
      *
-     * @param d:2D double array
-     * @return
+     * @param d:double[][] 2D double array
+     * @return CPoint
      */
     public static CPoint getSize(double[][] d) {
         CPoint ret = new CPoint(d.length, d[0].length);
@@ -2189,8 +2195,8 @@ public final class FactoryUtils {
     /**
      * return the row and column number of the input 2D array
      *
-     * @param d:2D int array
-     * @return
+     * @param d:int[][] 2D int array
+     * @return CPoint
      */
     public static CPoint getSize(int[][] d) {
         CPoint ret = new CPoint(d.length, d[0].length);
@@ -2747,9 +2753,9 @@ public final class FactoryUtils {
     /**
      * average two identical double array
      *
-     * @param a
-     * @param b
-     * @return
+     * @param a:double[]
+     * @param b:double[]
+     * @return double[]
      */
     public static double[] mean(double[] a, double[] b) {
         int n = Math.min(a.length, b.length);
@@ -3011,10 +3017,10 @@ public final class FactoryUtils {
      * crop the roi of the object from the matrix it should be noted that
      * internally it is used nf=nearFactor which you should give as a parameter
      *
-     * @param d:input image matrix
-     * @param t:threshould value for background subtraction
-     * @param nf:near factor how far object from the edge of the image matrix
-     * @return cropped matrix related to the object itself
+     * @param d:double[][] input image matrix
+     * @param t:int threshould value for background subtraction
+     * @param nf:int near factor how far object from the edge of the image matrix
+     * @return double[][] cropped matrix related to the object itself
      */
     public static double[][] getWeightCenteredROI(double[][] d, int t, int nf) {
         double[][] ret = null;

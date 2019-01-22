@@ -15,9 +15,9 @@ public class FactorySimilarityDistance {
      * euclidean chebyshev canberra sorensen angular_seperation
      * correlation_coefficient
      *
-     * @param d1
-     * @param d2
-     * @return
+     * @param d1:double[]
+     * @param d2:double[]
+     * @return double
      */
     public static double getEuclideanDistance(double[] d1, double[] d2) {
         double dist = 0;

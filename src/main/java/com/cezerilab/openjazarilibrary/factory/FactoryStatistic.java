@@ -416,9 +416,9 @@ public final class FactoryStatistic {
     /**
      * Mean Absolute Error
      *
-     * @param obs
-     * @param sim
-     * @return
+     * @param obs:double[]
+     * @param sim:double[]
+     * @return double
      */
     public static double MAE(double[] obs, double[] sim) {
         double err = 0;
@@ -434,9 +434,9 @@ public final class FactoryStatistic {
      * similar to ARE except ARE uses simulated value at denominator but MPE
      * uses observed one
      *
-     * @param obs
-     * @param sim
-     * @return
+     * @param obs:double[]
+     * @param sim:double[]
+     * @return double
      */
     public static double MPE(double[] obs, double[] sim) {
         double err = 0;
@@ -450,9 +450,9 @@ public final class FactoryStatistic {
     /**
      * Mean value of Absolute Relative Error
      *
-     * @param obs
-     * @param sim
-     * @return
+     * @param obs:double[]
+     * @param sim:double[]
+     * @return double
      */
     public static double ARE(double[] obs, double[] sim) {
         double err = 0;
@@ -466,9 +466,9 @@ public final class FactoryStatistic {
     /**
      * Index of Agreement
      *
-     * @param obs
-     * @param sim
-     * @return
+     * @param obs:double[]
+     * @param sim:double[]
+     * @return double
      */
     public static double IOA(double[] obs, double[] sim) {
         double m = FactoryUtils.getMean(obs);
@@ -485,9 +485,9 @@ public final class FactoryStatistic {
     /**
      * Relative Absolute Error
      *
-     * @param obs
-     * @param sim
-     * @return
+     * @param obs:double[]
+     * @param sim:double[]
+     * @return double
      */
     public static double RAE(double[] obs, double[] sim) {
         double mObs = FactoryUtils.getMean(obs);
@@ -501,12 +501,23 @@ public final class FactoryStatistic {
         return ret;
     }
 
+    /**
+     * RRSE value
+     * @param obs:double[]
+     * @param sim:double[]
+     * @return double
+     */
     public static double RRSE(double[] obs, double[] sim) {
         double mObs = FactoryUtils.getMean(obs);
         double rmse = RMSE(obs, sim);
         return rmse / mObs;
     }
 
+    /**
+     * return standard deviation value
+     * @param m:double[]
+     * @return double
+     */
     public static double getStandardDeviation(double[] m) {
         double mean = FactoryUtils.getMean(m);
         double deviation = 0.0d;
@@ -520,6 +531,11 @@ public final class FactoryStatistic {
         return Math.sqrt(variance);
     }
 
+    /**
+     * return variance value
+     * @param m:double[]
+     * @return double
+     */
     public static double getVariance(double[] m) {
         double mean = FactoryUtils.getMean(m);
         double deviation = 0.0d;
