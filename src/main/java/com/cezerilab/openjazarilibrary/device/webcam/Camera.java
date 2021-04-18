@@ -22,7 +22,7 @@ import javax.swing.SwingWorker;
  *
  * @author BAP1
  */
-public class Camera {
+public class Camera implements InputDevice{
     private static boolean isLive=false;
     private  BufferedImage image=null;
     private Webcam webcam; 
@@ -79,6 +79,7 @@ public class Camera {
         return FactoryImageProcess.drawText(image, "True FPS:" + FactoryUtils.formatDouble(fps,1), 10, 20, Color.yellow);
     }
 
+    @Override
     public BufferedImage getImage() {
         return image;
     }
