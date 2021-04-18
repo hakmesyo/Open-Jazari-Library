@@ -22,7 +22,7 @@ import javax.swing.SwingWorker;
  *
  * @author BAP1
  */
-public class Camera implements InputDevice{
+public class Camera extends InputDevice {
     private static boolean isLive=false;
     private  BufferedImage image=null;
     private Webcam webcam; 
